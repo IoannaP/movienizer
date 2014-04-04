@@ -1,8 +1,4 @@
 
-body {
-  padding-top: 50px;
-  padding-bottom: 30px;
-}
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -11,12 +7,6 @@ body {
 
 .theme-showcase > p > .btn {
   margin: 5px 0;
-}
-.p-bottom
-{
-padding-top:20px;
-position:absolute;
-text-align:center;
 }
 .boxoffice
 {
@@ -29,11 +19,10 @@ text-align:left;
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-bottom: 40px;
-  color: #5a5a5a;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  background-color:#888;
 }
-
-
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -53,8 +42,20 @@ body {
   padding-left: 0;
 }
 .navbar-wrapper .navbar {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.navbar-fixed-top
+{
+color:#777;
+position:absolute;
+top:0px;
+}
+.navbar-static-top
+{
+margin-left:10%;
+margin-right:10%;
+top:0;
 }
 
 
@@ -64,7 +65,11 @@ body {
 /* Carousel base class */
 .carousel {
   height: 500px;
+  width: 61%;
   margin-bottom: 60px;
+  top:0;
+  left:19.5%;
+  right:19.5%;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -97,15 +102,15 @@ body {
 
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
-  margin-bottom: 20px;
+  margin-bottom: 19px;
   text-align: center;
 }
 .marketing h2 {
   font-weight: normal;
 }
 .marketing .col-lg-4 p {
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 
@@ -138,7 +143,7 @@ body {
 
   /* Navbar positioning foo */
   .navbar-wrapper {
-    margin-top: 20px;
+    margin-top: 50px;
   }
   .navbar-wrapper .container {
     padding-right: 15px;

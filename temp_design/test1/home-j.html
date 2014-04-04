@@ -27,17 +27,9 @@
     <!-- Fixed navbar -->
     <div class="navbar-inverse navbar-fixed-top role="navigation">
       <div  class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="col-md-2 col-sm-2 navbar-brand" href="home-j.html">Movienator</a>
-        </div>
+        
         <div class="navbar-collapse collapse">
-		<div class="col-sm-5 col-md-5">
+		<div class="col-sm-3 col-md-6">
 			<form class="navbar-form" role="search">
 				<div class="input-group">
 				<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
@@ -48,14 +40,14 @@
 			</form>
 			
         </div>
-		<form class="col-sm-4 col-sm-4 navbar-form navbar-right horizontal" role="form">
+		<form class="col-sm-3 col-md-4 navbar-form navbar-right horizontal" role="form">
             <div class="form-group input-group-sm">
               <input type="text" placeholder="Email" class="form-control">
             </div>
             <div class="form-group input-group-sm">
               <input type="password" placeholder="Password" class="form-control">
 			  <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me">Remember me
               </label>
             </div>
             <button type="submit" class="btn btn-success btn-sm">Sign in</button>
@@ -67,9 +59,42 @@
 		
       </div>
 	</div>
+	<div class="navbar-wrapper">
+    <div class="container">
 
+	<div class="navbar-inverse navbar-static-top role="navigation">
+		<div class="container">
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				<div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="col-md-2 col-sm-2 navbar-brand" href="home-j.html">Movienator</a>
+        </div>
+					<li class="active"><a href="#">News</a></li>
+					<li><a href="#about">Movies</a></li>
+					<li><a href="#contact">Celebrities</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#">Reviews</a></li>
+						<li><a href="#">Top movies</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Trivia</a></li>
+					  </ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -117,7 +142,7 @@
       <div class="row">
         <div class="col-lg-4">
           <h2>Box Office</h2>
-          <table class="table table-hover">
+          <table class="table table-hover ">
 			<tr><td class="text-left">1.Divergent</td> <td class="text-right"> $54.6M</td></tr>
 			<tr><td class="text-left">2.Muppets Most Wanted</td> <td class="text-right"> $17M</td></tr>
 			<tr><td class="text-left">3.Mr. Peabody & Sherman</td> <td class="text-right"> $11.8M</td></tr>
@@ -129,7 +154,7 @@
         <div class="col-lg-4">
           <h2>Trending</h2>
           <table class="table table-hover">
-			<tr><td class="text-left">1.Rio 2</td> </tr>
+			<tr><td class="text-left ">1.Rio 2</td> </tr>
 			<tr><td class="text-left">2.Draft Day</td> </tr>
 			<tr><td class="text-left">3.Oculus</td> </tr>
 			<tr><td class="text-left">4.Only Lovers Left Alive</td> </tr>
