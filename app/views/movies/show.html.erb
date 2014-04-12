@@ -1,0 +1,146 @@
+<!-- Aici sunt toate informatiile pe care le poti obtine de la api-->
+<%= image_tag(@movie['posters']['detailed']) %>
+<h1><%= @movie['title'] %></h1>
+<h2><%= @movie['year'] %></h2>
+
+<h3>Genres</h3>
+
+<br>
+<ul>
+	<% @movie['genres'].each do |genre| %>
+		<li><%= genre %></li>
+	<% end %>
+	<li></li>
+</ul>
+
+<table>
+	<tr>
+		<td>MPAA Rating</td>
+		<td><%= @movie['mpaa_rating'] %></td>
+	</tr>
+	<tr>
+		<td>Runtime</td>
+		<td><%= @movie['runtime'] %></td>
+	</tr>
+	<tr>
+		<td>critics_consensus (don't know wtf is this)</td>
+		<td><%= @movie['critics_consensus'] %></td>
+	</tr>
+	<tr>
+		<td>release_dates</td>
+		<td><ul><li>theater = <%= @movie['release_dates']['theater'] %></li>
+		<% if @movie['release_dates']['dvd'] %> <!-- adica daca exista campul 'dvd' (nu este null) --> 
+			<li>dvd = <%= @movie['release_dates']['dvd'] %></li> 
+		<% end %>
+		</ul></td>
+	</tr>
+</table>
+
+<!-- This part is for movie reviews -->
+
+<table>
+   <% @reviews.each_with_index do |movieReview, index| %>
+      <tr>
+         <td><%= "Review no: " + index.to_s + " ...  " %></td>
+      </tr>
+      <tr>
+         <td><%= movieReview.review %></td>
+      </tr>
+   <% end %>
+</table>
+
+<!--
+Asta e structura normala a json-ului returnat de api-ul nostru pentru un film:
+Exemplul in cauza este Noah 
+
+Atentie!!! Nu trebuie sa se presupuna ca orice film 
+va avea toate campurile de mai jos. Trebuiesc testate toate campurile asa cum
+am dat exemplu mai jos
+
+Pentru detalii despre json va rog cititi: http://www.json.org/
+	Este doar o pagina si este foarte friendly explicata
+
+{
+   "id":771305170,
+   "title":"Noah",
+   "year":2014,
+   "genres":[
+      "Drama",
+      "Classics"
+   ],
+   "mpaa_rating":"PG-13",
+   "runtime":139,
+   "critics_consensus":"With sweeping visuals grounded by strong performances in service of a timeless tale told on a human scale, Darren Aronofsky's Noah brings the Bible epic into the 21st century.",
+   "release_dates":{
+      "theater":"2014-03-28"
+   },
+   "ratings":{
+      "critics_rating":"Certified Fresh",
+      "critics_score":76,
+      "audience_rating":"Spilled",
+      "audience_score":47
+   },
+   "synopsis":"Russell Crowe stars as Noah in the film inspired by the epic story of courage, sacrifice and hope. Directed by visionary filmmaker Darren Aronofsky (c) Paramount",
+   "posters":{
+      "thumbnail":"http://content9.flixster.com/movie/11/17/69/11176923_mob.png",
+      "profile":"http://content9.flixster.com/movie/11/17/69/11176923_pro.png",
+      "detailed":"http://content9.flixster.com/movie/11/17/69/11176923_det.png",
+      "original":"http://content9.flixster.com/movie/11/17/69/11176923_ori.png"
+   },
+   "abridged_cast":[
+      {
+         "name":"Russell Crowe",
+         "id":"162652569",
+         "characters":[
+            "Noah"
+         ]
+      },
+      {
+         "name":"Jennifer Connelly",
+         "id":"162652853",
+         "characters":[
+            "Naameh"
+         ]
+      },
+      {
+         "name":"Ray Winstone",
+         "id":"162693523",
+         "characters":[
+            "Tubal Cain"
+         ]
+      },
+      {
+         "name":"Emma Watson",
+         "id":"162655378",
+         "characters":[
+            "Il-la",
+            "Ila"
+         ]
+      },
+      {
+         "name":"Anthony Hopkins",
+         "id":"162653967",
+         "characters":[
+            "Methuselah"
+         ]
+      }
+   ],
+   "abridged_directors":[
+      {
+         "name":"Darren Aronofsky"
+      }
+   ],
+   "studio":"Paramount Pictures",
+   "alternate_ids":{
+      "imdb":"1959490"
+   },
+   "links":{
+      "self":"http://api.rottentomatoes.com/api/public/v1.0/movies/771305170.json",
+      "alternate":"http://www.rottentomatoes.com/m/noah_2014/",
+      "cast":"http://api.rottentomatoes.com/api/public/v1.0/movies/771305170/cast.json",
+      "clips":"http://api.rottentomatoes.com/api/public/v1.0/movies/771305170/clips.json",
+      "reviews":"http://api.rottentomatoes.com/api/public/v1.0/movies/771305170/reviews.json",
+      "similar":"http://api.rottentomatoes.com/api/public/v1.0/movies/771305170/similar.json"
+   }
+}
+-->
