@@ -11,32 +11,30 @@ class MoviesController < ApplicationController
 
 	private
 
-	#intoarce stringul in format JSON returnat de api
-	#pentru filmul care are id-ul 'id'
+	#return the jSon string returned by the API
+	#for a particular movie specified by 'id'
 	def movie_request( id )
 
-		#adresa nativa a api-ului (fara alte proprietati pentru query)
+		#the basic link for the API (without any query specified properties)
 		apilink = 'http://api.rottentomatoes.com/api/public/v1.0/'
-		#key-ul pentru api	
+		#the key for the API
 		#TODO: change api key when this is ready
 		apikey = 'haak3yvy8dsw4gfxu8vprvnv'
 
-		#se formeaza link-ul pentru api cu informatiile de mai sus
+		#create the link with all of the above informations
 		@link = apilink + 'movies/' + id.to_s + '.json?apikey=' + apikey
 
-		#se preia codul HTML (in cazul nostru codul este formatat ca json, 
-		#dar se foloseste tot protocolul HTTP care intoarce in mod normal
-		#un text in format html) returnat de api
+		#takes the jSon string using a HTTP request on the API
 		search_string = URI.parse(@link).read
 
 	end
 
-	#intoarce o structura recursiva de tip hash de hash-uri
-	#in care se pastreaza informatiile despre filme
+	#return a recursive structure (somthing like a hash of hashes)
+	#this structure keep informations about the movies
 	def movie_query( json_string )
 
-		#se parsseaza json-ul in structura recursiva descrisa
-		#anterior si o intoarce ca rezultat al metodei
+		#parse the jSon string in a recursive structure
+		#return this structure
 		parsed_json = JSON.parse(json_string)
 
 	end
