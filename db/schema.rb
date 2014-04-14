@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140412150721) do
+ActiveRecord::Schema.define(version: 20140412154235) do
+
+  create_table "movies", force: true do |t|
+    t.string   "movie_id"
+    t.string   "rating"
+    t.text     "review"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -24,23 +32,12 @@ ActiveRecord::Schema.define(version: 20140412150721) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-=======
-ActiveRecord::Schema.define(version: 20140412154235) do
-
-  create_table "movies", force: true do |t|
-    t.string   "movie_id"
-    t.string   "rating"
-    t.text     "review"
->>>>>>> 119c94aa7d441ef44728abb2ebc3dc07690df8d0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-=======
->>>>>>> 119c94aa7d441ef44728abb2ebc3dc07690df8d0
 end
