@@ -26,4 +26,17 @@ MDS::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "sandbox27843d08134c4a9aacf2ad1ad496e201.mailgun.org",
+    :user_name => "postmaster@sandbox27843d08134c4a9aacf2ad1ad496e201.mailgun.org",
+    :password => "5oomz90bc943"
+  }
+
 end
