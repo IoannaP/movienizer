@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class SearchesController < ApplicationController
-	def index
+	def search
 		@box_office_res = boxoffice_request
 		@movies_box_office = movies_query(@box_office_res)
 
