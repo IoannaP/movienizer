@@ -4,7 +4,9 @@ MDS::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :movies
-  resources :searches
+  #resources :searches
+
+  get 'search' => 'searches#search'
 
   # You can have the root of your site routed with "root"
   root 'welcome#home'
