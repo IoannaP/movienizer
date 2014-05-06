@@ -6,7 +6,10 @@ class MoviesController < ApplicationController
 	def show
 		json_string = movie_request(params[:movie_id])
 		@movie = movie_query(json_string)
-		@reviews = Movie.select("review").where("movie_id = ?", params[:movie_id])
+
+		movie_id = Movie.select("id").where("rotten_tomatoes_id = ?", params[:movie_id])
+		#@reviews = current_user.reviews.where("movie_id = ?", movie_id)
+		#@reviews = Review.select("comment").where("movie_id = ? and user_id = ?", movie_id, current_user.id)
 	end
 
 	private
