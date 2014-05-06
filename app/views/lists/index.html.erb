@@ -1,2 +1,26 @@
-sadsadas
+<%= link_to 'New list', new_user_list_path(current_user), :class => 'btn btn-primary' %>
 
+<h3>My lists</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <% user_lists.each do |list| %>
+    <tr>
+      <td><%= list.name %></td>
+      <td><%= list.description %></td>
+      <td><%= link_to 'Show', user_list_path(current_user, list), :class => 'btn btn-primary' %></td>
+      <td><%= link_to 'Edit', edit_user_list_path(current_user, list), :class => 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', 
+  		user_list_path(current_user, list), :method => :delete,
+        :data => { :confirm => "Press Ok to Delete the List \"#{list.name}\"."},
+        :class => 'btn btn-danger' %>
+
+    </tr>
+  <% end %>
+</table>
