@@ -12,14 +12,19 @@ describe Review do
   it { should respond_to :movie_id }
   it { should be_valid }
 
-  describe "when rating is not present" do
+  describe "when rating is nil" do
   	before { @review.rating = nil }
   	it { should_not be_valid }
   end
 
-  describe "when comment is not present" do
+  describe "when comment is nil" do
   	before { @review.comment = nil }
   	it { should be_valid }
+  end
+
+  describe "when comment id blank" do
+    before { @review.comment = "" }
+    it { should be_valid }
   end
 
   describe "when rating is less than 1" do
@@ -37,12 +42,12 @@ describe Review do
   	it { should_not be_valid }
   end
 
-  describe "when movie id is not present" do
+  describe "when movie id is nil" do
   	before { @review.movie_id = nil }
   	it { should_not be_valid }
   end
 
-  describe "when user id is not present" do
+  describe "when user id is nil" do
   	before { @review.user_id = nil }
   	it { should_not be_valid }
   end

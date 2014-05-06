@@ -11,13 +11,23 @@ describe Movie do
 	it { should respond_to :title }
 	it { should be_valid }
 
-	describe "when rottentomatoes id is not present" do
+	describe "when rottentomatoes id is nil" do
 		before { @movie.rotten_tomatoes_id = nil }
 		it { should_not be_valid }
 	end
 
-	describe "when title is not present" do
+	describe "when rottentomatoes id is blank" do
+		before { @movie.rotten_tomatoes_id = "" }
+		it { should_not be_valid }
+	end
+
+	describe "when title is nil" do
 		before { @movie.title = nil }
+		it { should_not be_valid }
+	end
+
+	describe "when title is blank" do
+		before { @movie.title = "" }
 		it { should_not be_valid }
 	end
 end
