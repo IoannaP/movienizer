@@ -38,6 +38,7 @@ end
 
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch =>'bootstrap3'
+gem 'select2-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -51,3 +52,5 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'devise'
 
 gem 'simple_form'
+gem 'simple-navigation-bootstrap'
+
