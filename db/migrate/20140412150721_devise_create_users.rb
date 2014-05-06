@@ -2,8 +2,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Database authenticatable
+      t.string :username,           null: false, default: ""
+      t.string :first_name,         null: true, default: ""
+      t.string :last_name,          null: true, default: ""
       t.string :email,              null: false, default: ""
-      t.string :nickname,           null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -19,12 +21,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email # Only if using reconfirmable
 
-
       t.timestamps
     end
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
+    add_index :users, :username,             unique: true
   end
 end
