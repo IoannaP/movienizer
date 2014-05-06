@@ -1,26 +1,29 @@
 Movienizer 
 ==========
 
-MDS Project
+Your online movie organizer
 
-Get project from GitHub
+Unix Install Guide
+=================
+
+Get the project from GitHub
 --------------------
 
-* Install git if you don't already installed
+* Install git
 
         sudo apt-get install -y git
 
-* Create a locat directory for the project
+* Create a local directory for the project
 
         mkdir Movienizer
     
-* Configure git in this directory
+* Configure git inside the directory
 
         git init
         git remote add origin https://github.com/IoannaP/movienizer.git
         git checkout -b version-0.1
 
-* Download the project from GitHub
+* Pull the project
 
         git pull origin version-0.1
 
@@ -41,7 +44,7 @@ Install and configure dependecies
         rails generate bootstrap:install static
         rails generate devise:install
         
-  * Press **Y** if a conflict error raised
+  * Press **Y** if you are raised a conflict
 
 Usage
 -----
@@ -50,6 +53,6 @@ Usage
 
         rails server
         
-* Start your favourite browser and open this address
+* Start your favourite browser and access the local server
 
         localhost:3000
