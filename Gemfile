@@ -53,3 +53,4 @@ gem 'devise'
 
 gem 'simple_form'
 gem 'simple-navigation-bootstrap'
+
