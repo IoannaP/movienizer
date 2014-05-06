@@ -15,7 +15,7 @@ Get the project from GitHub
 
 * Create a local directory for the project
 
-        mkdir Movienizer
+        mkdir Movienizer && cd Movienizer
     
 * Configure git inside the directory
 
