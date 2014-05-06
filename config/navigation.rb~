@@ -59,7 +59,7 @@ SimpleNavigation::Configuration.run do |navigation|
     if user_signed_in?
       primary.item :lists, 'Manage Lists' do |sub_nav|
         sub_nav.item :create, 'Create a list', '#'
-        sub_nav.item :index, 'My Lists', user_lists_path(current_user.username)
+        sub_nav.item :index, 'My Lists', user_lists_path(current_user)
       end
     else 
       primary.item :sign_up, 'Sign Up', new_user_registration_path

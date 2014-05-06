@@ -1,12 +1,29 @@
 MDS::Application.routes.draw do
+  get "lists/index"
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :users do
-    resources :lists
-    resources :reviews
+  devise_scope :users do
+    get "/users/:user_id/lists" => "lists#index", :as => :user_lists
+    post "/users/:user_id/lists" => "lists#create"
+    get "/users/:user_id/lists/new" => "lists#new", :as => :new_user_list
+    get "/users/:user_id/lists/:id/edit" => "lists#edit", :as => :edit_user_list
+    get "/users/:user_id/lists/:id" => "lists#show", :as => :user_list
+    patch "/users/:user_id/lists/:id" => "lists#update"
+    put "/users/:user_id/lists/:id" => "lists#update"
+    delete "/users/:user_id/lists/:id" => "lists#destroy"
+    
+    get "/users/:user_id/reviews" => "reviews#index", :as => :user_reviews
+    post "/users/:user_id/reviews" => "reviews#create"
+    get "/users/:user_id/reviews/new" => "reviews#new", :as => :new_user_review
+    get "/users/:user_id/reviews/:id/edit" => "reviews#edit", :as => :edit_user_review
+    get "/users/:user_id/reviews/:id" => "reviews#show", :as => :user_review
+    patch "/users/:user_id/reviews/:id" => "reviews#update"
+    put "/users/:user_id/reviews/:id" => "reviews#update"
+    delete "/users/:user_id/reviews/:id" => "reviews#destroy"
   end
+
   resources :movies
 
   get 'search' => 'searches#search'

@@ -1,6 +1,7 @@
 class List < ActiveRecord::Base
 	belongs_to :user
-	has_and_belongs_to_many :movies
+	has_many :list_movie_pairs
+	has_many :movies, :through => :list_movie_pairs
 
 	validates_length_of :name, maximum: 50
 	validates_length_of :description, maximum: 500

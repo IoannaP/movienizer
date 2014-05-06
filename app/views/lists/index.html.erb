@@ -1,0 +1,22 @@
+<h1>My Lists</h1>
+
+<% current_user_lists = List.where(user_id: current_user.id) %>
+<% if current_user_lists.length == 0 %>
+	<p>You have no lists. Create one now!</p>
+<% else %>
+	<ul>
+		<% current_user_lists.each do |list| %>
+			<li>
+				<h3><%= list.name %></h3>
+				<p><%= list.description %></p>
+
+				<ul>
+					<% list_movie_pairs = ListMoviePair.where(list_id: list.id) %>
+					<% list_movie_pairs.each do |pair| %>
+						<li><%= Movie.find(pair.movie_id).title %></li>
+					<% end %>
+				</ul>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
