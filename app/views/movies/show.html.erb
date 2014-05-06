@@ -38,16 +38,24 @@
 
 <!-- This part is for movie reviews -->
 
+<%
+=begin
+%>
+
 <table>
    <% @reviews.each_with_index do |movieReview, index| %>
       <tr>
-         <td><%= "Review no: " + index.to_s + " ...  " %></td>
+         <td><%= "Review no: #{index} ... " %></td>
       </tr>
       <tr>
-         <td><%= movieReview.review %></td>
+         <td><%= movieReview.comment %></td>
       </tr>
    <% end %>
 </table>
+
+<%
+=end
+%>
 
 <!--
 Asta e structura normala a json-ului returnat de api-ul nostru pentru un film:

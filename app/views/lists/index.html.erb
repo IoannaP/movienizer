@@ -1,22 +1,31 @@
+<%= link_to 'New list', new_user_list_path(current_user), :class => 'btn btn-primary' %>
+
 <h1>My Lists</h1>
 
 <% current_user_lists = List.where(user_id: current_user.id) %>
 <% if current_user_lists.length == 0 %>
-	<p>You have no lists. Create one now!</p>
+  <p>You have no lists. Create one now!</p>
 <% else %>
-	<ul>
-		<% current_user_lists.each do |list| %>
-			<li>
-				<h3><%= list.name %></h3>
-				<p><%= list.description %></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
 
-				<ul>
-					<% list_movie_pairs = ListMoviePair.where(list_id: list.id) %>
-					<% list_movie_pairs.each do |pair| %>
-						<li><%= Movie.find(pair.movie_id).title %></li>
-					<% end %>
-				</ul>
-			</li>
-		<% end %>
-	</ul>
+    <% user_lists.each do |list| %>
+      <tr>
+        <td><%= list.name %></td>
+        <td><%= list.description %></td>
+        <td><%= link_to 'Show', user_list_path(current_user, list), :class => 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_user_list_path(current_user, list), :class => 'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', 
+        user_list_path(current_user, list), :method => :delete,
+          :data => { :confirm => "Press Ok to Delete the List \"#{list.name}\"."},
+          :class => 'btn btn-danger' %>
+
+      </tr>
+    <% end %>
+  </table>
 <% end %>
