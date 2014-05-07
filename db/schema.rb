@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140506211534) do
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
+    t.boolean  "private"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

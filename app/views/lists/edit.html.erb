@@ -1,4 +1,4 @@
-<%= link_to 'My lists', user_lists_path(current_user), :class => 'btn btn-primary' %>
+<%= link_to 'My lists', user_lists_path(current_user.username), :class => 'btn btn-primary' %>
 
 <%= simple_form_for [current_user, list], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>

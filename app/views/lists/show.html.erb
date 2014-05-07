@@ -1,4 +1,4 @@
-<%= link_to 'My lists', user_lists_path(current_user), :class => 'btn btn-primary' %>
+<%= link_to 'My lists', user_lists_path(@user.username), :class => 'btn btn-primary' %>
 
 <h1><%= list.name %></h1>
 

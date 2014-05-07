@@ -6,4 +6,5 @@ class List < ActiveRecord::Base
 	validates_length_of :name, maximum: 50
 	validates_length_of :description, maximum: 500
 	validates_presence_of :name, :user_id
+	validates_inclusion_of :private, in: [true, false]
 end

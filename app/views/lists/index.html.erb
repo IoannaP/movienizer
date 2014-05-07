@@ -1,31 +1,62 @@
 <%= link_to 'New list', new_user_list_path(current_user.username), :class => 'btn btn-primary' %>
 
-<h1>My Lists</h1>
+<h1>
+  <% if @user == current_user %>
+    My Lists
+  <% else %>
+    <%= @user.username %>'s Lists
+  <% end %>
+</h1>
 
-<% unless @lists %>
-  <p>You have no lists. Create one now!</p>
+<% if @lists.length == 0 %>
+  <% if @user == current_user %>
+    <p>You have no lists. Create one now!</p>
+  <% else %>
+    <p>This user has no public lists.</p>
+  <% end %>
 <% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
 
-    <% @lists.each do |list| %>
-      <tr>
-        <td><%= list.name %></td>
-        <td><%= list.description %></td>
-        <td><%= link_to 'Show', user_list_path(current_user.username, list), :class => 'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_user_list_path(current_user.username, list), :class => 'btn btn-primary' %></td>
-        <td><%= link_to 'Delete', 
-        user_list_path(current_user.username, list), :method => :delete,
-          :data => { :confirm => "Press Ok to Delete the List \"#{list.name}\"."},
-          :class => 'btn btn-danger' %>
-      </tr>
-    <% end %>
-  </table>
+  <% if @user != current_user && @public_lists_count == 0 %>
+      <p>This user has no public lists.</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <% if @user == current_user %>
+            <th>Visibility</th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <% @lists.each do |list| %>
+        <% unless @user != current_user && list.private == true %>
+          <tr>
+            <td><%= list.name %></td>
+            <td><%= list.description %></td>
+            <% if @user == current_user %>
+              <td>
+                <% if list.private == true %>
+                  Private
+                <% else %>
+                  Public
+                <% end %>
+              </td>
+            <% end %>
+            <td><%= link_to 'Show', user_list_path(@user.username, list), :class => 'btn btn-primary' %></td>
+            <% if @user == current_user %>
+              <td><%= link_to 'Edit', edit_user_list_path(current_user.username, list), :class => 'btn btn-primary' %></td>
+              <td><%= link_to 'Delete', 
+              user_list_path(current_user.username, list), :method => :delete,
+                :data => { :confirm => "Press Ok to Delete the List \"#{list.name}\"."},
+                :class => 'btn btn-danger' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
   <%= paginate @lists, :theme => 'twitter-bootstrap'%>
 <% end %>
 

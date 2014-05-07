@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe List do
   before do
-  	@list = List.new(name: "Sample List", user_id: 1)
+  	@list = List.new(name: "Sample List", user_id: 1, private: true)
   end
 
   subject { @list }
@@ -44,5 +44,10 @@ describe List do
   describe "when user id is nil" do
   	before { @list.user_id = nil }
   	it { should_not be_valid }
+  end
+
+  describe "when privacy attribute is nil" do
+    before { @list.private = nil }
+    it { should_not be_valid }
   end
 end

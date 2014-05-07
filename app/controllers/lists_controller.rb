@@ -5,22 +5,24 @@ class ListsController < ApplicationController
   helper_method :user_lists
 
   def index
-    @lists = current_user.lists.page(params[:page]).per(5).order('created_at DESC')
+    @user = User.find_by_username(params[:username])
+    @lists = @user.lists.page(params[:page]).per(5).order('created_at DESC')
+    @public_lists_count = @lists.where(private: false).count
   end
 
   def new
-  	@list = user_lists.new
+  	@list = current_user.lists.new
   end
 
   def create
-  	@list = user_lists.new(list_params)
+  	@list = current_user.lists.new(list_params)
 
   	if @list.save
 	    #TODO: Make this flash directly on user_lists_path
 	    #flash[:success] = @list[:name] + " has been successfully created !"
       redirect_to user_lists_path(current_user.username)
    	else
-	  render 'new'
+	    render :new
   	end
   end
 
@@ -28,7 +30,7 @@ class ListsController < ApplicationController
   end
 
   def update
-    list
+    @list = list
     @list.update(list_params)
     if @list.save
       redirect_to user_lists_path(current_user.username)
@@ -38,25 +40,27 @@ class ListsController < ApplicationController
   end
 
   def show
+    @user = User.find_by_username(params[:username])
+    @lists = List.where(user_id: @user.id)
   end
 
   def destroy
-    deleted_list = list.destroy
-    flash[:success] = "Income type \"#{list.name}\" was deleted!"
+    deleted_list = current_user.lists.find(params[:id])
+    deleted_list.destroy
     redirect_to user_lists_path(current_user.username)
   end
 
   private
 
     def user_lists
-      @user_lists ||= current_user.lists
+      User.find_by_username(params[:username]).lists
     end
 
     def list
-      @list ||= user_lists.find(params[:id])
+      user_lists.find(params[:id])
     end
 
     def list_params
-      params.require(:list).permit(:name, :description)
+      params.require(:list).permit(:name, :description, :private)
     end
 end
