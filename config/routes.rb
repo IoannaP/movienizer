@@ -5,23 +5,23 @@ MDS::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   devise_scope :users do
-    get "/users/:user_id/lists" => "lists#index", :as => :user_lists
-    post "/users/:user_id/lists" => "lists#create"
-    get "/users/:user_id/lists/new" => "lists#new", :as => :new_user_list
-    get "/users/:user_id/lists/:id/edit" => "lists#edit", :as => :edit_user_list
-    get "/users/:user_id/lists/:id" => "lists#show", :as => :user_list
-    patch "/users/:user_id/lists/:id" => "lists#update"
-    put "/users/:user_id/lists/:id" => "lists#update"
-    delete "/users/:user_id/lists/:id" => "lists#destroy"
+    get "/users/:username/lists" => "lists#index", :as => :user_lists
+    post "/users/:username/lists" => "lists#create"
+    get "/users/:username/lists/new" => "lists#new", :as => :new_user_list
+    get "/users/:username/lists/:id/edit" => "lists#edit", :as => :edit_user_list
+    get "/users/:username/lists/:id" => "lists#show", :as => :user_list
+    patch "/users/:username/lists/:id" => "lists#update"
+    put "/users/:username/lists/:id" => "lists#update"
+    delete "/users/:username/lists/:id" => "lists#destroy"
     
-    get "/users/:user_id/reviews" => "reviews#index", :as => :user_reviews
-    post "/users/:user_id/reviews" => "reviews#create"
-    get "/users/:user_id/reviews/new" => "reviews#new", :as => :new_user_review
-    get "/users/:user_id/reviews/:id/edit" => "reviews#edit", :as => :edit_user_review
-    get "/users/:user_id/reviews/:id" => "reviews#show", :as => :user_review
-    patch "/users/:user_id/reviews/:id" => "reviews#update"
-    put "/users/:user_id/reviews/:id" => "reviews#update"
-    delete "/users/:user_id/reviews/:id" => "reviews#destroy"
+    get "/users/:username/reviews" => "reviews#index", :as => :user_reviews
+    post "/users/:username/reviews" => "reviews#create"
+    get "/users/:username/reviews/new" => "reviews#new", :as => :new_user_review
+    get "/users/:username/reviews/:id/edit" => "reviews#edit", :as => :edit_user_review
+    get "/users/:username/reviews/:id" => "reviews#show", :as => :user_review
+    patch "/users/:username/reviews/:id" => "reviews#update"
+    put "/users/:username/reviews/:id" => "reviews#update"
+    delete "/users/:username/reviews/:id" => "reviews#destroy"
   end
 
   resources :movies

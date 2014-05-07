@@ -54,3 +54,6 @@ gem 'devise'
 gem 'simple_form'
 gem 'simple-navigation-bootstrap'
 
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+

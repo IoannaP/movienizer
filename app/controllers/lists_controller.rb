@@ -5,6 +5,7 @@ class ListsController < ApplicationController
   helper_method :user_lists
 
   def index
+    @lists = current_user.lists.page(params[:page]).per(5).order('created_at DESC')
   end
 
   def new
@@ -17,7 +18,7 @@ class ListsController < ApplicationController
   	if @list.save
 	    #TODO: Make this flash directly on user_lists_path
 	    #flash[:success] = @list[:name] + " has been successfully created !"
-      redirect_to user_lists_path(current_user)
+      redirect_to user_lists_path(current_user.username)
    	else
 	  render 'new'
   	end
@@ -30,7 +31,7 @@ class ListsController < ApplicationController
     list
     @list.update(list_params)
     if @list.save
-      redirect_to user_lists_path
+      redirect_to user_lists_path(current_user.username)
     else
       render :edit
     end
@@ -42,7 +43,7 @@ class ListsController < ApplicationController
   def destroy
     deleted_list = list.destroy
     flash[:success] = "Income type \"#{list.name}\" was deleted!"
-    redirect_to user_list_path
+    redirect_to user_lists_path(current_user.username)
   end
 
   private
