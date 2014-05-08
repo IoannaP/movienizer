@@ -58,7 +58,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :welcome, 'Home', root_path
     if user_signed_in?
       primary.item :lists, 'Manage Lists' do |sub_nav|
-        sub_nav.item :create, 'Create a list', '#'
+        sub_nav.item :create, 'Create a list', new_user_list_path(current_user.username)
         sub_nav.item :index, 'My Lists', user_lists_path(current_user.username)
       end
     else 
