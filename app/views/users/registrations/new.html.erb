@@ -1,18 +1,22 @@
-<h2>Sign up</h2>
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= bootstrap_flash%>
 
-  <div class="form-inputs">
-    <%= f.input :username, required: true, autofocus: true%>
-    <%= f.input :email, required: true %>
-    <%= f.input :password, required: true %>
-    <%= f.input :password_confirmation, required: true %>
+    <div class="form-inputs">
+      <%= f.input :username, required: true, autofocus: true%>
+      <%= f.input :email, required: true %>
+      <%= f.input :password, required: true %>
+      <%= f.input :password_confirmation, required: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up" %>
+    </div>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+</div>
 
 <%= render "users/shared/links" %>
