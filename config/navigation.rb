@@ -58,18 +58,14 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :welcome, 'Home', root_path
     if user_signed_in?
       primary.item :lists, 'Manage Lists' do |sub_nav|
-        sub_nav.item :create, 'Create a list', '#'
+        sub_nav.item :create, 'Create a list', new_user_list_path(current_user.username)
         sub_nav.item :index, 'My Lists', user_lists_path(current_user.username)
       end
+      primary.item :log_out, 'Sign Out', destroy_user_session_path, :method => :delete
     else 
       primary.item :sign_up, 'Sign Up', new_user_registration_path
       primary.item :sign_in, 'Sign In', new_user_session_path
     end
-
-
-    primary.item :about, 'About us', '#'
-
-
 
 
     # you can also specify html attributes to attach to this particular level
