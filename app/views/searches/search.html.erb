@@ -1,23 +1,6 @@
-<!-- form of the search bar -->
-<%= form_tag search_path, method: 'get' do %>
-	<%= label_tag(:q, 'Search for:') %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag 'Search', :name => nil %>
-<% end %>
-
 <!-- table with results from search query -->
 
-<!-- some garbage code from the debug -->
-<!--
-    <div>
-    	<p><%= @link %></p>
-      <br>
-      <% if @search_res %>
-      <p><%= @search_res[1..1000] %></p>
-      <br> 
-      <% end %>
-    </div>-->
-
+  <% if @movies_part.size > 0 %>
     <table class="table">
       <% if @movies_part %>
     	  <% @movies_part.each do |movie| %>
@@ -27,7 +10,7 @@
     	      <% if movie.key?('alternate_ids') && movie['alternate_ids'].key?('imdb') %>
     	      	<!-- uncomment this to link the movies to imdb site -->
               <!--<%= link_to movie['title'], "http://www.imdb.com/title/tt" +  movie['alternate_ids']['imdb'], :target => '_blank' %> -->
-              <!-- this will link every movie with the specified movie page that correspond to it -->
+              <!-- this link every movie with the specified movie page that correspond to it -->
               <%= link_to movie['title'], movie_path(:movie_id => movie['id'], :id => 'show') %>
     	      <% else %>
     	      	<%= movie['title'] %>
@@ -39,6 +22,9 @@
         <% end %>
     	<% end %>
     </table>
+  <% else %>
+    <p>No movie was found for the query "<%= params[:q] %>" ! </p>
+  <% end %>
 
 <!-- Table with results from the box office query -->
 
