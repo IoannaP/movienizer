@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe List do
   before do
-  	@list = List.new(name: "Sample List", user_id: 1, private: true)
+  	@list = List.new(id: 1, name: "Sample List", user_id: 1, private: true)
   end
 
   subject { @list }
@@ -46,8 +46,19 @@ describe List do
   	it { should_not be_valid }
   end
 
-  describe "when privacy attribute is nil" do
+  describe "when the privacy attribute is nil" do
     before { @list.private = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when the list has more than 50 movies" do
+    before do
+      list_movie_pairs = []
+      51.times do |i|
+        list_movie_pairs << ListMoviePair.new(list_id: 1, movie_id: i)
+      end
+      @list.list_movie_pairs = list_movie_pairs
+    end
     it { should_not be_valid }
   end
 end

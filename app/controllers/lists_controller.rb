@@ -41,7 +41,7 @@ class ListsController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:username])
-    @lists = List.where(user_id: @user.id)
+    @movies = list.movies.page(params[:page]).per(20)
   end
 
   def destroy
@@ -50,7 +50,15 @@ class ListsController < ApplicationController
     redirect_to user_lists_path(current_user.username)
   end
 
-  private
+  def remove_movie
+    movie = Movie.find(params[:movie_id])
+    if movie
+      list.movies.delete(movie)
+    end
+    redirect_to user_list_path(current_user.username, params[:id])
+  end
+
+private
 
     def user_lists
       User.find_by_username(params[:username]).lists

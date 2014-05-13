@@ -14,6 +14,8 @@ MDS::Application.routes.draw do
     put "/users/:username/lists/:id" => "lists#update"
     delete "/users/:username/lists/:id" => "lists#destroy"
     
+    delete "/users/:username/lists/:id/:movie_id" => "lists#remove_movie", :as => :remove_user_list_movie
+
     get "/users/:username/reviews" => "reviews#index", :as => :user_reviews
     post "/users/:username/reviews" => "reviews#create"
     get "/users/:username/reviews/new" => "reviews#new", :as => :new_user_review

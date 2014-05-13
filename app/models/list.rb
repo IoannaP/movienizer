@@ -7,4 +7,10 @@ class List < ActiveRecord::Base
 	validates_length_of :description, maximum: 500
 	validates_presence_of :name, :user_id
 	validates_inclusion_of :private, in: [true, false]
+	validate :validate_movies_count
+
+private
+	def validate_movies_count
+		errors.add(:list_movie_pairs, "too many") if list_movie_pairs.size > 50
+	end
 end
