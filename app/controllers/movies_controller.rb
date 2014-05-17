@@ -32,10 +32,7 @@ class MoviesController < ApplicationController
   	  # create the link with all the above informations
   	  youtube_link = youtube_api_link + '?q=' + query;
 
-  	  # takes the XML using a HTTP request on the API
- 	  trailer_XML = URI.parse(youtube_link)
-	
-	  # parse the XML string
+  	  # takes and parse the XML using a HTTP request on the API
 	  doc = Nokogiri::XML(open(youtube_link))
 	  
 	  # get the video embeded link on youtube

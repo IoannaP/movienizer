@@ -5,7 +5,7 @@
   <%= f.input :description %>
   <%= f.input :private, label: "Visibility",
   as: :radio_buttons, 
-  collection: [["private", true], ["public", false]],
+  collection: [["private", list.private], ["public", !list.private]],
   checked: true %>
   
   <%= f.button :submit, :class => 'btn btn-primary' %>  
