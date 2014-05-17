@@ -30,8 +30,9 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list = list
+  	@list = list
     @list.update(list_params)
+
     if @list.save
       redirect_to user_lists_path(current_user.username)
     else
@@ -55,20 +56,20 @@ class ListsController < ApplicationController
     if movie
       list.movies.delete(movie)
     end
-    redirect_to user_list_path(current_user.username, params[:id])
+      redirect_to user_list_path(current_user.username, params[:id])
   end
 
 private
 
-    def user_lists
-      User.find_by_username(params[:username]).lists
-    end
+  def user_lists
+    User.find_by_username(params[:username]).lists
+  end
 
-    def list
-      user_lists.find(params[:id])
-    end
+  def list
+    user_lists.find(params[:id])
+  end
 
-    def list_params
-      params.require(:list).permit(:name, :description, :private)
-    end
+  def list_params
+    params.require(:list).permit(:name, :description, :private)
+  end
 end
