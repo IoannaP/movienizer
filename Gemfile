@@ -51,11 +51,18 @@ gem 'select2-rails'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Create users
 gem 'devise'
 
+# Simple forms
 gem 'simple_form'
 gem 'simple-navigation-bootstrap'
 
+# Use Bootstrap
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+
+# Parse XML files
+gem 'nokogiri'
+
 
