@@ -18,7 +18,7 @@ MDS::Application.routes.draw do
 
     get "/users/:username/reviews" => "reviews#index", :as => :user_reviews
     post "/users/:username/reviews" => "reviews#create"
-    get "/users/:username/reviews/new" => "reviews#new", :as => :new_user_review
+    get "/users/:username/reviews/new/:id" => "reviews#new", :as => :new_user_review
     get "/users/:username/reviews/:id/edit" => "reviews#edit", :as => :edit_user_review
     get "/users/:username/reviews/:id" => "reviews#show", :as => :user_review
     patch "/users/:username/reviews/:id" => "reviews#update"
@@ -29,7 +29,7 @@ MDS::Application.routes.draw do
   resources :movies
 
   get 'search' => 'searches#search'
-
+  
   # You can have the root of your site routed with "root"
   root 'welcome#home'
 

@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20140506211534) do
   create_table "movies", force: true do |t|
     t.string   "rotten_tomatoes_id"
     t.string   "title"
+    t.string   "thumbnail_poster_link"
+    t.string   "detailed_poster_link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140506211534) do
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "movie_id"
+    t.boolean  "private"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

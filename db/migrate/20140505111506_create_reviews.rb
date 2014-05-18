@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration
     	t.text :comment
     	t.integer :user_id
     	t.integer :movie_id
+      t.boolean :private
     	
       t.timestamps
     end

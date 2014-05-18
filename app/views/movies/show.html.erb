@@ -7,39 +7,90 @@
 
 <br>
 <ul>
-	<% @movie['genres'].each do |genre| %>
-		<li><%= genre %></li>
-	<% end %>
-	<li></li>
+  <% @movie['genres'].each do |genre| %>
+    <li><%= genre %></li>
+  <% end %>
+  <li></li>
 </ul>
 
 <table>
-	<tr>
-		<td>MPAA Rating</td>
-		<td><%= @movie['mpaa_rating'] %></td>
-	</tr>
-	<tr>
-		<td>Runtime</td>
-		<td><%= @movie['runtime'] %></td>
-	</tr>
-	<tr>
-		<td>critics_consensus (don't know wtf is this)</td>
-		<td><%= @movie['critics_consensus'] %></td>
-	</tr>
-	<tr>
-		<td>release_dates</td>
-		<td><ul><li>theater = <%= @movie['release_dates']['theater'] %></li>
-		<% if @movie['release_dates']['dvd'] %> <!-- adica daca exista campul 'dvd' (nu este null) --> 
-			<li>dvd = <%= @movie['release_dates']['dvd'] %></li> 
-		<% end %>
-		</ul></td>
-	</tr>
+  <tr>
+    <td>MPAA Rating</td>
+    <td><%= @movie['mpaa_rating'] %></td>
+  </tr>
+  <tr>
+	 <td>Runtime</td>
+	 <td><%= @movie['runtime'] %></td>
+  </tr>
+  <tr>
+	 <td>critics_consensus (don't know wtf is this)</td>
+	 <td><%= @movie['critics_consensus'] %></td>
+  </tr>
+  <tr>
+	 <td>release_dates</td>
+	 <td><ul><li>theater = <%= @movie['release_dates']['theater'] %></li>
+	 <% if @movie['release_dates']['dvd'] %> <!-- adica daca exista campul 'dvd' (nu este null) --> 
+	   <li>dvd = <%= @movie['release_dates']['dvd'] %></li> 
+	 <% end %>
+	 </ul></td>
+  </tr>
 </table>
+
+<!-- This part is for movie reviews -->
+<% if @reviews.length != 0 %>
+  <% if user_signed_in? %>
+    <% if @current_user_review %>
+      <h4>Your Review</h4>
+      <p>Rating: <%= @current_user_review.rating %></p>
+      <p>Review: <%= @current_user_review.comment %></p>
+      <%= link_to 'Edit ' + movie_title + '\'s review', edit_user_review_path(current_user.username, @existent_movie.id), :method => :get , :class => 'btn btn-primary' %>
+    <% else %>
+      <%= link_to 'Review ' + movie_title, new_user_review_path(current_user.username, @existent_movie.id), :method => :get, :class => 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+  <% if @public_reviews_count != 0 %>
+    <h2> User Reviews </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Rating</th>
+          <th>Review</th>
+        </tr>
+      </thead>
+      <% @reviews.each do |review| %>
+        <% if user_signed_in? == false or (user_signed_in? and review.user_id != current_user.id) %>
+          <% if review.private == false %>
+            <tr>
+              <td> <%= User.find(review.user_id).username %> </td>
+              <td> <%= review.rating %> </td>
+              <td> <%= review.comment %> </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </table>
+  <% else %>
+    <h2> User Reviews </h2>
+    <% if user_signed_in? and @current_user_review%>
+      <p>There are no more public reviews for <%= movie_title %> !</p>
+    <% else %>
+      <p>There are no public reviews for <%= movie_title %> !</p>
+    <% end %>
+  <% end %>
+<% else %>
+  <% if user_signed_in? %>
+     <%= link_to 'Review ' + movie_title, new_user_review_path(current_user.username, @existent_movie.id), :method => :get, :class => 'btn btn-primary' %>
+  <% end %>
+  <h2> User Reviews </h2>
+  <p>No reviews for this movie yet!</p>
+  <p></p>
+<% end %>
 
 <!-- trailer -->
 <!-- TODO => Refactor this code when we have time -->
+<h2>Movie Trailer </h2>
 <iframe id="player" type="text/html" width="640" height="390" src= <%= "http://www.youtube.com/embed/#{@youtube_trailer_id}" %> frameborder="0"></iframe>
-<!-- This part is for movie reviews -->
 
 <%
 =begin
