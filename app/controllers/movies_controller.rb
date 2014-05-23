@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
 
 	@youtube_trailer_id = trailer_request(@movie['title'], @movie['year'].to_s)
 
-	# add movie to database if it's not
+	# add movie to database if it's not already
 	if Movie.exists?(:rotten_tomatoes_id => params[:movie_id]) == false
 	  movie_title = @movie['title']
 	  

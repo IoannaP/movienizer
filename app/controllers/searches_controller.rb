@@ -2,9 +2,9 @@ require 'open-uri'
 require 'json'
 
 class SearchesController < ApplicationController
+	
 	def search
-		@box_office_res = boxoffice_request
-		@movies_box_office = movies_query(@box_office_res)
+		@movies_box_office = boxoffice_movies
 
 		if params[:q]
 			@search_res = movies_request(params[:q])
@@ -38,25 +38,73 @@ class SearchesController < ApplicationController
 
 	end
 
-	#return the jSon string returned by the API
-	#for a Box Office request
-	def boxoffice_request
+  # return Box Office Movies from database
+  # the Box Office is refreshed if last update
+  # was made more that 24 hours ago
+  def boxoffice_movies
 
-		#the basic link for the API (without any query specified properties)
-		apilink = 'http://api.rottentomatoes.com/api/public/v1.0/'
-		#the key for the API
-		#TODO: change api key when this is ready
-		apikey = 'haak3yvy8dsw4gfxu8vprvnv'
-		#number of the movies returned by the query
-		apipagelimit = 'limit=10'
+  	# get first movie from table to check his
+  	# created_at date
+	last = BoxOfficeMovie.first
 
-		#create the link with all of the above informations
-		@link = apilink + 'lists/movies/box_office.json?apikey=' + apikey + '&' + apipagelimit
+	# if database is empty or last update was more that
+	# 24 hours ago, movies are updated
+	if last == nil || last.created_at < DateTime.now - 1.day
 
-		#takes the jSon string using a HTTP request on the API
-		search_string = URI.parse(@link).read		
+  	  # delete all movies from Box Office Table
+	  BoxOfficeMovie.delete_all
 
-	end
+	  # get jSon string from Rotten Tomatoes API
+	  search_string = boxoffice_request
+
+	  # parse jSon string
+  	  movies_box_office = movies_query(search_string)
+
+  	  # insert every movie in database
+  	  movies_box_office.each do |movie|
+
+  	  	# it is checked if the movie have thumbnail_posters
+  	  	# some movies on the website don't have this poster
+  	  	thumbnail_poster = nil
+  	  	if movie['posters'] && movie['posters']['thumbnail']
+  	  	  thumbnail_poster = movie['posters']['thumbnail']
+  	  	end
+
+  	  	# insert movie in database
+  	  	box_office_movie = BoxOfficeMovie.new(
+  	  			:title => movie['title'], 
+  	            :rotten_tomatoes_id => movie['id'],
+  	            :thumbnail_poster_link => thumbnail_poster)
+
+  	    box_office_movie.save
+
+  	  end
+  	
+  	end
+
+  	BoxOfficeMovie.all
+
+  end
+
+  # return the jSon string returned by the API
+  # for a Box Office request
+  def boxoffice_request
+
+    # the basic link for the API (without any query specified properties)
+    apilink = 'http://api.rottentomatoes.com/api/public/v1.0/'
+    # the key for the API
+    # TODO: change api key when this is ready
+    apikey = 'haak3yvy8dsw4gfxu8vprvnv'
+    # number of the movies returned by the query
+    apipagelimit = 'limit=10'
+
+    # create the link with all of the above informations
+    @link = apilink + 'lists/movies/box_office.json?apikey=' + apikey + '&' + apipagelimit
+
+    # takes the jSon string using a HTTP request on the API
+    search_string = URI.parse(@link).read
+
+  end
 
 	#return the jSon string returned by the API
 	#for a particular movie specified by 'id'
