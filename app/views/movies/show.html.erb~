@@ -2,7 +2,7 @@
 
 <table>
 <tr>
-<td style="padding-bottom:10%;padding-top:5%;"> <%= image_tag(@movie['posters']['detailed']) %> </td>
+<td style="padding-bottom:10%;"> <%= image_tag(@movie['posters']['detailed']) %> </td>
 <td style="padding-left:10%;">
 	<h1><%= @movie['title'] %></h1>
 	<h2><%= @movie['year'] %></h2>

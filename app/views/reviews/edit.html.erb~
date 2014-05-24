@@ -1,14 +1,14 @@
 <!-- <%= link_to 'My reviews', user_reviews_path(current_user.username), :class => 'btn btn-primary' %> -->
 <table>
 <tr>
-<td style="padding-top: 5%;">
+<td style="padding: 5%;">
 <p>
   <% if Movie.find(Review.find(params[:id]).movie_id).detailed_poster_link %>
     <%= image_tag(Movie.find(Review.find(params[:id]).movie_id).detailed_poster_link) %>
   <% end %>
 </p>
 </td>
-<td style="padding-left: 5%;padding-top:5%;">
+<td style="padding-left: 5%;">
 <h1><%= Movie.find(Review.find(params[:id]).movie_id).title %></h1> 
 </td>
 </tr>

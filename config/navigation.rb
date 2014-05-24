@@ -53,7 +53,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
-    primary.dom_class = 'nav nav-tabs'
+    primary.dom_class = 'nav nav-pills'
     
     primary.item :welcome, 'Home', root_path
     if user_signed_in?

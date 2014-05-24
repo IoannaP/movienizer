@@ -23,7 +23,7 @@
           <th>Poster</th>
           <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMovie Title</th>
           <th>Rating</th>
-          <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspReview</th>
+          <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspReview</th>
           <% if @user == current_user %>
             <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspVisibility</th>
           <% end %>
