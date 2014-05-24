@@ -1,14 +1,13 @@
 <h2>Resend confirmation instructions</h2>
 
+<%= bootstrap_flash%>
 <div class="row">
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
   
     <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-      <%= f.error_notification %>
-      <%= f.full_error :confirmation_token %>
-
+    
     <div class="form-inputs">
-      <%= f.input :login, required: true, autofocus: true %>
+      <%= f.input :login, required: true, autofocus: true, label: 'Email/Username' %>
     </div>
 
     <div class="form-actions">

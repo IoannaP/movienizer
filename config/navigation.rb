@@ -53,7 +53,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
-    primary.dom_class = 'nav nav-tabs'
+    primary.dom_class = 'nav nav-pills'
     
     primary.item :welcome, 'Home', root_path
     if user_signed_in?
@@ -62,7 +62,11 @@ SimpleNavigation::Configuration.run do |navigation|
         sub_nav.item :index, 'My Lists', user_lists_path(current_user.username)
       end
       primary.item :reviews, 'My Reviews', user_reviews_path(current_user.username)
-      primary.item :log_out, 'Sign Out - Fix me', destroy_user_session_path, :method => :delete
+      primary.item :account,  "@#{current_user.username}" do |sub_nav|
+        sub_nav.item :manage_account, 'Manage account', edit_user_registration_path
+        sub_nav.item :invite, 'Invite friends','#'
+      end
+      primary.item :log_out, 'Sign Out', destroy_user_session_path, :method => :delete
     else 
       primary.item :sign_up, 'Sign Up', new_user_registration_path
       primary.item :sign_in, 'Sign In', new_user_session_path
