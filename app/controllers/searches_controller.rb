@@ -10,6 +10,11 @@ class SearchesController < ApplicationController
 			@search_res = movies_request(params[:q])
 			@movies_part = movies_query(@search_res)
 		end
+
+		# respond_to do |format|
+		# 	format.html { redirect_to searches_url }
+		# 	format.js
+		# end
 	end
 
 	private
