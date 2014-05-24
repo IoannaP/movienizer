@@ -22,4 +22,6 @@
 /test
 
 # Ignore devise initializer
-/initializers/devise.rb
+config/initializers/devise.rb
+
+db/schema.rb

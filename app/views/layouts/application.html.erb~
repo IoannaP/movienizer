@@ -11,7 +11,8 @@
   <div class="container" style="background-color: white;">
     <div class="row" >
       <div class="col-sm-7" id="left-nav">
-	       <%= render_navigation :expand_all => true %>
+	<p>MovieUp</p>
+       <%= render_navigation :expand_all => true %>
            </div>
       <div class="col-sm-5" id="right-nav">
         <ul class="nav nav-pills">

@@ -1,4 +1,4 @@
-<!-- <%= link_to 'My reviews', user_reviews_path(current_user.username), :class => 'btn btn-primary' %> -->
+<%= link_to 'My reviews', user_reviews_path(current_user.username), :class => 'btn btn-primary' %>
 
 <p>
   <% if detailed_poster %>

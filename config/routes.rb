@@ -1,4 +1,5 @@
 MDS::Application.routes.draw do
+  get "boxoffice/partial"
   get "lists/index"
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations",
     :passwords => "passwords"}

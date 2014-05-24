@@ -1,7 +1,5 @@
-<%= bootstrap_flash %>
-
 <h1>
- <% if @user == current_user %>
+  <% if @user == current_user %>
     My Reviews
   <% else %>
     <%= @user.username %>'s Reviews
@@ -10,7 +8,7 @@
 
 <% if @reviews.length == 0 %>
   <% if @user == current_user %>
-    <p>You haven't reviewed any movies yet!</p>
+    <p>You have no reviews. Create one now!</p>
   <% else %>
     <p>This user has no public reviews.</p>
   <% end %>
@@ -25,7 +23,7 @@
           <th>Poster</th>
           <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMovie Title</th>
           <th>Rating</th>
-          <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspReview</th>
+          <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspReview</th>
           <% if @user == current_user %>
             <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspVisibility</th>
           <% end %>
