@@ -1,1 +1,7 @@
 <%= bootstrap_flash %>
+<<<<<<< HEAD
+<%= render 'layouts/panel'%>
+=======
+
+<%= render 'boxoffice/box_office' %>
+>>>>>>> 31fbcbbc100e72b6edcd7db8c8d6403d5ae9fb30

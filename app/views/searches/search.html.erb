@@ -21,19 +21,7 @@
 
 <!-- Table with results from box office query -->
 
-<table class="table">
-  <th>Pic</th>
-  <th>Title (Year) </th>
-
-	<% @movies_box_office.each do |movie| %>
-    <tr>
-      <td><%= image_tag(movie.thumbnail_poster_link, size: "21x31") %></td>
-      <td>
-        <strong><%= link_to movie.title, movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></strong>
-      </td>
-    </tr>
-	<% end %>
-</table>
+<%= render 'boxoffice/box_office' %>
 
 <!--
 If you need more details about the informations you can take from the api please visit the links bellow 
