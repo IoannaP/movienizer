@@ -70,6 +70,7 @@ SimpleNavigation::Configuration.run do |navigation|
     else 
       primary.item :sign_up, 'Sign Up', new_user_registration_path
       primary.item :sign_in, 'Sign In', new_user_session_path
+      primary.item :sign_in_facebook, 'Sign In with Facebook', user_omniauth_authorize_path(:facebook)
     end
 
 

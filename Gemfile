@@ -54,6 +54,9 @@ gem 'select2-rails'
 # Create users
 gem 'devise'
 
+# Authentication with facebook
+gem 'omniauth-facebook'
+
 # Simple forms
 gem 'simple_form'
 gem 'simple-navigation-bootstrap'

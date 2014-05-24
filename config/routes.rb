@@ -1,6 +1,7 @@
 MDS::Application.routes.draw do
   get "lists/index"
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations",
+    :passwords => "passwords"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
