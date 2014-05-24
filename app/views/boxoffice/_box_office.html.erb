@@ -1,15 +1,19 @@
-<table class="table">
-  <th>Pic</th>
-  <th>Title (Year) </th>
+<div class="box-office col-sm-4">
+  <h3>Box Office Movies</h3>
 
-  <% movies_box_office = box_office_movies %>
+  <table class="box-office-table">
+    <th>Pic</th>
+    <th class="center-text">Title</th>
 
-	<% movies_box_office.each do |movie| %>
-    <tr>
-      <td><%= image_tag(movie.thumbnail_poster_link, size: "21x31") %></td>
-      <td>
-        <strong><%= link_to movie.title, movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></strong>
-      </td>
-    </tr>
-	<% end %>
-</table>
+    <% movies_box_office = box_office_movies %>
+
+    <% movies_box_office.each do |movie| %>
+      <tr>
+        <td><%= image_tag(movie.thumbnail_poster_link, size: "21x31") %></td>
+        <td class="title-tab">
+          <strong><%= link_to movie.title, movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></strong>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

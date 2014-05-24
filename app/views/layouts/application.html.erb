@@ -47,7 +47,16 @@
   </div>
   <div class="container"  style="padding-left: 10%;padding-bottom:10%; padding-right:10%;background-color: white;">
     <div class="row" >
-      <div class="col-sm-9"><%= yield %></div>
+      
+      <!-- render box-office if it is in homepage, searches or movies path -->
+
+      <% if ['welcome', 'searches', 'movies'].include?(params[:controller]) %>
+        <div class="col-sm-7"><%= yield %></div>
+        <%= render 'boxoffice/box_office' %>
+      <% else %>
+        <div class="col-sm-9"><%= yield %></div>      
+      <% end %>
+
     </div>
   </div>
 
