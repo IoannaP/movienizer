@@ -48,7 +48,7 @@
             <% end %>
             <td><%= link_to 'Show', user_list_path(@user.username, list), :class => 'btn btn-primary' %></td>
             <% if @user == current_user %>
-              <td><%= link_to 'Edit', edit_user_list_path(current_user.username, list), :class => 'btn btn-primary' %></td>
+              <td><%= link_to 'Edit', edit_user_list_path(current_user.username, list), :method => :get, :class => 'btn btn-primary' %></td>
               <td><%= link_to 'Delete', 
               user_list_path(current_user.username, list), :method => :delete,
                 :data => { :confirm => "Press Ok to Delete the List \"#{list.name}\"."},

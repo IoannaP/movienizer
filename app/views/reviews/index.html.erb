@@ -1,0 +1,69 @@
+<h1>
+  <% if @user == current_user %>
+    My Reviews
+  <% else %>
+    <%= @user.username %>'s Reviews
+  <% end %>
+</h1>
+
+<% if @reviews.length == 0 %>
+  <% if @user == current_user %>
+    <p>You have no reviews. Create one now!</p>
+  <% else %>
+    <p>This user has no public reviews.</p>
+  <% end %>
+<% else %>
+
+  <% if @user != current_user && @public_lists_count == 0 %>
+      <p>This user has no public reviews.</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Thumbnail</th>
+          <th>Movie Name</th>
+          <th>Rating</th>
+          <th>Review</th>
+          <% if @user == current_user %>
+            <th>Visibility</th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <% @reviews.each do |review| %>
+        <% unless @user != current_user && review.private == true %>
+          <tr>
+            <td>
+              <% if Movie.find(review.movie_id).thumbnail_poster_link %>
+                <%= image_tag(Movie.find(review.movie_id).thumbnail_poster_link) %>
+              <% end %>
+            </td>
+            <td><%= link_to Movie.find(review.movie_id).title, movie_path(:movie_id => Movie.find(review.movie_id).rotten_tomatoes_id, :id => 'show') %></td>
+            <td><%= review.rating.to_s %></td>
+            <td><%= review.comment %></td>
+            <% if @user == current_user %>
+              <td>
+                <% if review.private == true %>
+                  Private
+                <% else %>
+                  Public
+                <% end %>
+              </td>
+            <% end %>
+            <td><%= link_to 'Show', movie_path(:id => 'show', :movie_id => Movie.find(review.movie_id).rotten_tomatoes_id) , :class => 'btn btn-primary' %></td>
+            <% if @user == current_user %>
+              <td><%= link_to 'Edit', edit_user_review_path(current_user.username, review.id), :method => :get, :class => 'btn btn-primary' %></td>
+              <td><%= link_to 'Delete', 
+              user_review_path(current_user.username, review.movie_id), :method => :delete,
+                :data => { :confirm => "Press Ok to Delete the Review for " + Movie.find(review.movie_id).title },
+                :class => 'btn btn-danger' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
+  <%= paginate @reviews, :theme => 'twitter-bootstrap'%>
+<% end %>
+
+

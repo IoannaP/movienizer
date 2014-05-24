@@ -61,7 +61,8 @@ SimpleNavigation::Configuration.run do |navigation|
         sub_nav.item :create, 'Create a list', new_user_list_path(current_user.username)
         sub_nav.item :index, 'My Lists', user_lists_path(current_user.username)
       end
-      primary.item :log_out, 'Sign Out', destroy_user_session_path, :method => :delete
+      primary.item :reviews, 'My Reviews', user_reviews_path(current_user.username)
+      primary.item :log_out, 'Sign Out - Fix me', destroy_user_session_path, :method => :delete
     else 
       primary.item :sign_up, 'Sign Up', new_user_registration_path
       primary.item :sign_in, 'Sign In', new_user_session_path

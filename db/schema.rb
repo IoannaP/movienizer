@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506211534) do
+ActiveRecord::Schema.define(version: 20140523225234) do
+
+  create_table "bmovies", force: true do |t|
+    t.string   "title"
+    t.string   "rotten_tomatoes_id"
+    t.string   "thumbnail_poster_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "box_office_movies", force: true do |t|
+    t.string   "title"
+    t.string   "rotten_tomatoes_id"
+    t.string   "thumbnail_poster_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "list_movie_pairs", force: true do |t|
     t.integer  "list_id"
@@ -32,6 +48,8 @@ ActiveRecord::Schema.define(version: 20140506211534) do
   create_table "movies", force: true do |t|
     t.string   "rotten_tomatoes_id"
     t.string   "title"
+    t.string   "thumbnail_poster_link"
+    t.string   "detailed_poster_link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140506211534) do
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "movie_id"
+    t.boolean  "private"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

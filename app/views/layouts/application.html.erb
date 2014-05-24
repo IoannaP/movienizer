@@ -10,35 +10,35 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-4" id="left-nav">
-       <%= render_navigation :expand_all => true%>
-      </div>
-      <div class="col-sm-4" id="middle-nav">
-        <ul class="nav nav-tabs">
-          <li> 
-            <%= form_tag search_path, method: 'get', :class => "navbar-form navbar-left" do %>
-              <%= text_field_tag :q , params[:q] , placeholder: "Movies...", class: "form-control form-group" %>
+      <div class="col-sm-6" id="left-nav">
+       <%= render_navigation :expand_all => true %>
+           </div>
+      <div class="col-sm-5" id="right-nav">
+        <ul class="nav nav-pills">
+          <li style="float: right;">
+		<ul class="nav nav-pills">
+            <%= form_tag search_path, :method => :get, :class => "navbar-form navbar-left" do %>
+              <% if params[:q] %>
+                <%= text_field_tag :q , params[:q].gsub('+', ' ') , placeholder: "Movies...", class: "form-control form-group" %>
+              <% else %>
+                <%= text_field_tag :q , params[:q], placeholder: "Movies...", class: "form-control form-group" %>
+              <% end %>
               <%= submit_tag 'Search', :name => nil, :class => "btn btn-default" %>
             <% end %>
-          </li>
-        </ul>
-      </div>
-      <div class="col-sm-4" id="right-nav">
-        <ul class="nav nav-tabs">
-          <li style="float: right;">
+          
             <% unless user_signed_in? %>
-            <ul class="nav">
-              <li class="dropdown open">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sign in <b class="caret"></b></a>   
-                <div class="dropdown-menu" style="padding: 15px; margin-left: -120%;">
+            
+             <!-- li class="dropdown open">
+                <a class="btn btn" data-toggle="dropdown" href="#" style="margin-top: 10%;margin-bottom: -5%;">Sign in <b class="caret"></b></a>   
+                <div class="dropdown-menu" style="padding: 15px; margin-left: 0%; ">
                   <form>
                     <input id="login-username" type="text" placeholder="Username/E-mail">
                     <input id="login-password" type="password" placeholder="Password">
-                    <button class="btn btn-sm btn-primary btn-block" type="submit" >Sign in</button>
+                    <button class="btn btn-sm btn-primary btn-block" type="submit">Sign in</button>
                   </form>
                 </div>
-              </li>
-            </ul>
+              </li> -->
+          
             <%end%>
           </li>
         </ul>

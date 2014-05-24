@@ -1,21 +1,14 @@
-<!-- table with results from search query -->
+<!-- Table with results from search query -->
 
-  <% if @movies_part.size > 0 %>
+  <% if @movies_part %>
     <table class="table">
       <% if @movies_part %>
     	  <% @movies_part.each do |movie| %>
     	    <tr>
     	      <td><%= image_tag(movie['posters']['thumbnail'], size: "61x91") %></td>
-    	      <td><strong>
-    	      <% if movie.key?('alternate_ids') && movie['alternate_ids'].key?('imdb') %>
-    	      	<!-- uncomment this to link the movies to imdb site -->
-              <!--<%= link_to movie['title'], "http://www.imdb.com/title/tt" +  movie['alternate_ids']['imdb'], :target => '_blank' %> -->
-              <!-- this link every movie with the specified movie page that correspond to it -->
-              <%= link_to movie['title'], movie_path(:movie_id => movie['id'], :id => 'show') %>
-    	      <% else %>
-    	      	<%= movie['title'] %>
-    	      <% end %>
-    	      </strong></td>
+    	      <td>
+              <strong><%= link_to movie['title'], movie_path(:movie_id => movie['id'], :id => 'show') %></strong>
+            </td>
     	      <td><%= movie['year'] %></td>
     	      <td><%= movie['synopsis'] %></td>
     	    </tr>
@@ -26,7 +19,7 @@
     <p>No movie was found for the query "<%= params[:q] %>" ! </p>
   <% end %>
 
-<!-- Table with results from the box office query -->
+<!-- Table with results from box office query -->
 
 <table class="table">
   <th>&nbsp;</th>
@@ -34,21 +27,16 @@
 
 	<% @movies_box_office.each do |movie| %>
     <tr>
-      <td><%= image_tag(movie['posters']['thumbnail'], size: "21x31") %></td>
-      <td><strong>
-      <% if movie.key?('alternate_ids') && movie['alternate_ids'].key?('imdb') %>
-      	<!--<%= link_to movie['title'], "http://www.imdb.com/title/tt" +  movie['alternate_ids']['imdb'], :target => '_blank' %> -->
-        <%= link_to movie['title'], movie_path(:movie_id => movie['id'], :id => 'show') %>
-      	<%= "( #{movie['year'] } )" %>
-      <% else %>
-      	<%= movie['title'] + "( #{movie['year'] } )" %>
-		      <% end %>
-      </strong></td>
+      <td><%= image_tag(movie.thumbnail_poster_link, size: "21x31") %></td>
+      <td>
+        <strong><%= link_to movie.title, movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></strong>
+      </td>
     </tr>
 	<% end %>
 </table>
 
-<!-- If you need more details about the informations you can take from the api please visit the links bellow 
+<!--
+If you need more details about the informations you can take from the api please visit the links bellow 
 
 box office: http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=haak3yvy8dsw4gfxu8vprvnv&limit=10
 search: http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=haak3yvy8dsw4gfxu8vprvnv&q=titanic&page_limit=25
