@@ -5,9 +5,7 @@
     <th>Pic</th>
     <th class="center-text">Title</th>
 
-    <% movies_box_office = box_office_movies %>
-
-    <% movies_box_office.each do |movie| %>
+    <% box_office_movies.each do |movie| %>
       <tr>
         <td><%= image_tag(movie.thumbnail_poster_link, size: "21x31") %></td>
         <td class="title-tab">
