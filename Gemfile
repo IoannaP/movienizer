@@ -52,10 +52,12 @@ gem 'select2-rails'
 # gem 'debugger', group: [:development, :test]
 
 # Create users
-gem 'devise'
+gem 'devise', '>= 2.0.0'
 
 # Authentication with facebook
 gem 'omniauth-facebook'
+
+gem 'devise_invitable', '~> 1.3.4'
 
 # Simple forms
 gem 'simple_form'

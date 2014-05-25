@@ -27,13 +27,13 @@
   <% if @user != current_user && @public_lists_count == 0 %>
       <p>This user has no public lists.</p>
   <% else %>
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Name</th>
-          <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDescription</th>
+          <th>Description</th>
           <% if @user == current_user %>
-            <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspVisibility</th>
+            <th>Visibility</th>
           <% end %>
         </tr>
       </thead>

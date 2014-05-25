@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable , :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :lists
   has_many :reviews
 
+  has_many :invitees, class_name: "User", foreign_key: :invited_by_id
+  belongs_to :inviter, class_name: "User", foreign_key: :invited_by_id
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
 

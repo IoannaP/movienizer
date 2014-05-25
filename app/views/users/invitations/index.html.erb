@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1 class="text-center">Invited Users</h1>
+</div>
+
+<%= bootstrap_flash%>
+
+
+<%= link_to "Invite a friend!",
+            new_user_invitation_path,
+            :class => 'btn btn-primary' %>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Invitation status</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitees.each do |invitee| %>
+      <tr>
+        <td><%= invitee.email%></td>
+        <td><%= invitee.username%></td>
+        <td><%= "#{invitee.first_name} #{invitee.last_name}"%></td>
+        <td>
+          <% if invitee.invitation_accepted_at %>
+            Accepted
+          <%else%>
+            Pending
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @invitees, :theme => 'twitter-bootstrap'%>

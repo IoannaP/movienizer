@@ -64,7 +64,7 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :reviews, 'My Reviews', user_reviews_path(current_user.username)
       primary.item :account,  "@#{current_user.username}" do |sub_nav|
         sub_nav.item :manage_account, 'Manage account', edit_user_registration_path
-        sub_nav.item :invite, 'Invite friends','#'
+        sub_nav.item :invite, 'Invite friends', user_invitations_path(current_user.username)
       end
       primary.item :sign_out, 'Sign Out', destroy_user_session_path, :method => :delete
     else 
