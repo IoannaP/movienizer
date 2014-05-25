@@ -1,2 +1,30 @@
+<%= stylesheet_link_tag "welcomehome", media: "all", "data-turbolinks-track" => true %>
 <%= bootstrap_flash %>
+<br>
+
+<% unless user_signed_in? %>
+<br><br>
+<h3>Welcome to MovioUP !</h3><br><br>
+
+<% end %>
+
+<% if user_signed_in? %>
+<h3>Welcome, <%= current_user.username %> !</h3><br><br>
+<h4>Your lists:</h4><br>
+  <% current_user.lists.each do |list| %>
+    <li id="li"><%= link_to list.name, user_list_path(current_user.username, list.id) %></li>
+  <% end %>
+
+
+  <br>
+<h4>Your latest reviews:</h4><br>
+  <% current_user.reviews.each do |review| %>
+    <li>
+      <% if Movie.find(review.movie_id).thumbnail_poster_link %>
+        <%= image_tag(Movie.find(review.movie_id).thumbnail_poster_link, size: '21x31') %>
+      <% end %>
+      <%= link_to Movie.find(review.movie_id).title, movie_path(:movie_id => Movie.find(review.movie_id).rotten_tomatoes_id, id: 'show') %>
+    </li>
+  <% end %>
+<% end %>
 
