@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Review do
   before do
-  	@review = Review.new(rating: 10, user_id: 1, movie_id: 1)
+  	@review = Review.new(rating: 10, user_id: 1, movie_id: 1, private: true)
   end
 
   subject { @review }

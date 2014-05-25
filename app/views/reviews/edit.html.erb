@@ -15,7 +15,13 @@
 
 <%= simple_form_for [current_user, review], :url => { :action => 'update'}, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.hidden_field :movie_id %>
-  <%= f.input :rating %>
+
+  <div class='rating-slider-box' >
+    <label>Rating</label>
+    <%= f.range_field :rating, label: 'Rating', :in => 1..10, :step => '1', :class => 'rating-slider' %>
+    <pre>1    2     3    4     5    6     7    8     9   10</pre>
+  </div>
+
   <%= f.input :comment %>
   <%= f.input :private, label: "Visibility",
   as: :radio_buttons, 
