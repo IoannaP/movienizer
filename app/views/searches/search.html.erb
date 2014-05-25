@@ -10,7 +10,13 @@
               <strong><%= link_to movie['title'], movie_path(:movie_id => movie['id'], :id => 'show') %></strong>
             </td>
     	      <td><%= movie['year'] %></td>
-    	      <td><%= movie['synopsis'] %></td>
+            <td>
+              <% if movie['synopsis'].length > 100 %>
+    	          <%= movie['synopsis'].first(100) + ' ...' %>
+              <% else %>
+                <%= movie['synopsis'] %>
+              <% end %>
+            </td>
     	    </tr>
         <% end %>
     	<% end %>
@@ -18,10 +24,6 @@
   <% else %>
     <p>No movie was found for the query "<%= params[:q] %>" ! </p>
   <% end %>
-
-<!-- Table with results from box office query -->
-
-<%= render 'boxoffice/box_office' %>
 
 <!--
 If you need more details about the informations you can take from the api please visit the links bellow 

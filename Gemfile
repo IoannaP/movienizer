@@ -67,5 +67,3 @@ gem 'bootstrap-kaminari-views'
 
 # Parse XML files
 gem 'nokogiri'
-
-
