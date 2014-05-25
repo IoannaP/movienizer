@@ -6,16 +6,16 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body id="body" >
+<body>
 
-  <div class="container" style="background-color: white;">
+  <div class="container">
     <div class="row" >
       <div class="col-sm-7" id="left-nav">
 	       <%= render_navigation :expand_all => true %>
            </div>
       <div class="col-sm-5" id="right-nav">
         <ul class="nav nav-pills">
-          <li style="float: right;">
+          <li>
 		<ul class="nav nav-pills">
             <%= form_tag search_path, :method => :get, :class => "navbar-form navbar-left" do %>
               <% if params[:q] %>
@@ -45,7 +45,7 @@
       </div>
     </div>
   </div>
-  <div class="container"  style="padding-left: 10%;padding-bottom:10%; padding-right:10%;background-color: white;">
+  <div class="container">
     <div class="row" >
       
       <!-- render box-office if it is in homepage, searches or movies path -->
