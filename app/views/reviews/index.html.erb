@@ -37,7 +37,7 @@
           <tr>
             <td>
               <% if Movie.find(review.movie_id).thumbnail_poster_link %>
-                <%= image_tag(Movie.find(review.movie_id).thumbnail_poster_link) %>
+                <%= image_tag(Movie.find(review.movie_id).thumbnail_poster_link, size: '61x91') %>
               <% end %>
             </td>
             <td><%= link_to Movie.find(review.movie_id).title, movie_path(:movie_id => Movie.find(review.movie_id).rotten_tomatoes_id, :id => 'show') %></td>
