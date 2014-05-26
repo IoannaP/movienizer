@@ -44,12 +44,14 @@
 <% if @reviews.length != 0 %>
   <% if user_signed_in? %>
     <% if @current_user_review %>
-      <h4>Your Review</h4>
-      <p>Rating: <%= @current_user_review.rating %></p>
-      <p>Review: <%= @current_user_review.comment %></p>
-      <%= link_to 'Edit ' + movie_title + '\'s review', edit_user_review_path(current_user.username, @current_user_review.id), :method => :get , :class => 'btn btn-primary' %>
-    <% else %>
-      <%= link_to 'Review ' + movie_title, new_user_review_path(current_user.username, @existent_movie.id), :method => :get, :class => 'btn btn-primary' %>
+      <div class="well" >
+        <h4>Your Review</h4>
+        <p>Rating: <%= @current_user_review.rating %></p>
+        <p>Review: <%= @current_user_review.comment %></p>
+        <%= link_to 'Edit ' + movie_title + '\'s review', edit_user_review_path(current_user.username, @current_user_review.id), :method => :get , :class => 'btn btn-primary' %>
+      </div>
+      <% else %>
+        <%= link_to 'Review ' + movie_title, new_user_review_path(current_user.username, @existent_movie.id), :method => :get, :class => 'btn btn-primary' %>
     <% end %>
   <% end %>
   <% if @public_reviews_count != 0 %>
