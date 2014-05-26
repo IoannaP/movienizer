@@ -37,7 +37,11 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'rspec', '~> 3.0.0.beta2'
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec",  '~> 4.2.7', require: false
 end
 
 gem 'select2-rails'
