@@ -1,21 +1,37 @@
-<%= link_to @user == current_user ? "My lists" : "All lists", user_lists_path(@user.username), :class => 'btn btn-primary' %>
+<% if @exists == false || (@user != current_user && list.private == true) %>
+	<h1>Sorry!</h1>
+	<p>The page does not exist</p>
+<% else %>
 
-<h1><%= list.name %></h1>
+	<%= link_to @user == current_user ? "My lists" : "All lists", user_lists_path(@user.username), :class => 'btn btn-primary' %>
 
-<p><%= list.description %></p>
+	<h1><%= list.name %></h1>
 
-<ol>
-	<% @movies.each do |movie| %>
-		<li>
-			<%= movie.title %>
-			<% if @user == current_user %>
-				<%= link_to "Remove", 
-				    remove_user_list_movie_path(movie_id: movie.id), :method => :delete,
-				    :data => { :confirm => "Remove?"},
-				    :class => "btn btn-danger" %>
-			<% end %>
-		</li>
+	<p><%= list.description %></p>
+	<% if @user == current_user %>
+		<% if list.private == true %>
+			<p>This list is <b>private</b>.<p>
+		<% else %>
+			<p>This list is <b>public</b>.<p>
+		<% end %>
+
+		<%= link_to "Add movie", user_list_list_movie_pairs_path(current_user.username, list), class: "btn btn-primary" %>
 	<% end %>
-</ol>
 
-<%= paginate @movies, theme: "twitter-bootstrap" %>
+	<ol>
+		<% @movies.each do |movie| %>
+			<li>
+				<%= image_tag(movie.thumbnail_poster_link) %>
+				<%= "#{movie.title} (#{movie.year})" %>
+				<% if @user == current_user %>
+					<%= link_to "Remove", 
+					    remove_user_list_movie_path(movie_id: movie.id), :method => :delete,
+					    :data => { :confirm => "Remove?"},
+					    :class => "btn btn-danger" %>
+				<% end %>
+			</li>
+		<% end %>
+	</ol>
+
+	<%= paginate @movies, theme: "twitter-bootstrap" %>
+<% end %>

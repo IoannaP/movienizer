@@ -3,5 +3,5 @@ class Movie < ActiveRecord::Base
 	has_many :lists, :through => :list_movie_pairs
 	has_many :reviews
 
-	validates_presence_of :rotten_tomatoes_id, :title
+	validates_presence_of :rotten_tomatoes_id, :title, :year
 end

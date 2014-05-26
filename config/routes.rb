@@ -17,6 +17,8 @@ MDS::Application.routes.draw do
     delete "/users/:username/lists/:id" => "lists#destroy"
     
     delete "/users/:username/lists/:id/:movie_id" => "lists#remove_movie", :as => :remove_user_list_movie
+    get "/users/:username/lists/:id/add" => "lists#add_movies", :as => :user_list_list_movie_pairs
+    post "/users/:username/lists/:id/add" => "lists#submit_movies"
 
     get "/users/:username/invitations" => "invitations#index", :as => :user_invitations
 
@@ -33,6 +35,7 @@ MDS::Application.routes.draw do
   resources :movies
 
   get 'search' => 'searches#search'
+  get "in_place_search" => "searches#in_place_search", :as => :in_place_search
   
   # You can have the root of your site routed with "root"
   root 'welcome#home'

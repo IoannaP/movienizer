@@ -12,7 +12,60 @@ class SearchesController < ApplicationController
   
   end
 
+<<<<<<< HEAD
+private
+
+	#return the jSon string returned from the API for all the movies
+	#that correspond with the name given by the parameter 'param'
+	def movies_request( param )
+
+		#the basic link for the API (without any query specified properties)
+		apilink = 'http://api.rottentomatoes.com/api/public/v1.0/' 
+		#the key for the API
+		#TODO: change api key when this is ready
+		apikey = 'haak3yvy8dsw4gfxu8vprvnv'
+		#number of the movies returned by the query
+		apipagelimit = 'page_limit=10'
+
+		#replace all whitespaces from the 'param' string with character '+'
+		#this is required by the standard of the API query
+		param.gsub!(/\s/,'+')
+
+		#create the link with all of the above informations
+		@link = apilink + 'movies.json?apikey=' + apikey + '&q=' + param + '&' + apipagelimit
+
+		#takes the jSon string using a HTTP request on the API
+		search_string = URI.parse(@link).read
+
+	end
+
+  # return Box Office Movies from database
+  # the Box Office is refreshed if last update
+  # was made more that 24 hours ago
+  def boxoffice_movies
+
+  	# get first movie from table to check his
+  	# created_at date
+	last = BoxOfficeMovie.first
+
+	# if database is empty or last update was more that
+	# 24 hours ago, movies are updated
+	if last == nil || last.created_at < DateTime.now - 1.day
+
+  	  # delete all movies from Box Office Table
+	  BoxOfficeMovie.delete_all
+
+	  # get jSon string from Rotten Tomatoes API
+	  search_string = boxoffice_request
+
+	  # parse jSon string
+  	  movies_box_office = movies_query(search_string)
+
+  	  # insert every movie in database
+  	  movies_box_office.each do |movie|
+=======
   private
+>>>>>>> c4cb08aea2165d152b2e570d88be72f473ab679a
 
   # return the jSon string returned from the API for all the movies
   # that correspond with the name given by the parameter 'param'

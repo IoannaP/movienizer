@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>MovieUP</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<<<<<<< HEAD
-
-<script>
 function movieFormatResult(movie) {
     var markup = "<table class='movie-result'><tr>";
     if (movie.posters !== undefined && movie.posters.thumbnail !== undefined) {
@@ -69,50 +57,3 @@ $("document").ready(function() {
         escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
 });
-
-</script>
-
-=======
->>>>>>> c4cb08aea2165d152b2e570d88be72f473ab679a
-  <div class="container">
-    <div class="row" >
-      <div class="col-md-7" id="left-nav">
-	       <%= render_navigation :expand_all => true %>
-      </div>
-      <div class="col-md-5">
-        <div id="search-form">
-            <%= form_tag search_path, :method => :get, :class => "navbar-form navbar-left" do %>
-              <% if params[:q] %>
-                <%= text_field_tag :q , params[:q].gsub('+', ' ') , placeholder: "Movies...", class: "form-control form-group" %>
-              <% else %>
-                <%= text_field_tag :q , params[:q], placeholder: "Movies...", class: "form-control form-group" %>
-              <% end %>
-              
-              <%= submit_tag 'Search', :name => nil, :class => "btn btn-default" %>
-            <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row" >
-      <!-- render box-office if it is in homepage, searches or movies path -->
-      
-      <% if ['welcome', 'searches', 'movies'].include?(params[:controller]) %>
-      <div class="col-md-7"><%= yield %></div>
-        <div class="col-md-5">
-          <%= render 'boxoffice/box_office' %>
-        </div>
-      <% else %>
-      <div class="col-md-12">
-      <%=yield%>
-      </div>
-      <%end%>
-
-    </div>
-  </div>
-
-  <%= render 'layouts/footer.html.erb' %>
-</body>
-</html>

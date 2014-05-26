@@ -9,6 +9,9 @@ class List < ActiveRecord::Base
 	validates_inclusion_of :private, in: [true, false]
 	validate :validate_movies_count
 
+	# accepts_nested_attributes_for :list_movie_pairs, :allow_destroy => true
+	# accepts_nested_attributes_for :movies, :allow_destroy => true
+
 private
 	def validate_movies_count
 		errors.add(:list_movie_pairs, "too many") if list_movie_pairs.size > 50
