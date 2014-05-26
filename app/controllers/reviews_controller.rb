@@ -62,10 +62,14 @@ class ReviewsController < ApplicationController
   def movie_rating(movie_id)
     reviews = Review.where(:movie_id => movie_id)
     rating = 0
-    reviews.each do |review|
-      rating = rating + review.rating
+    if reviews.empty? == false
+      reviews.each do |review|
+        rating = rating + review.rating
+      end
+      rating = rating / reviews.length
+    else
+      rating = "unrated"
     end
-    rating = rating / reviews.length
   end
 
   def current_user_reviews
