@@ -18,42 +18,15 @@
 #left-nav {
   margin-top: 8px; 
   padding-right: 0px;
-}
-
-#middle-nav {
   margin-left: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
 }
 
-#right-nav {
+#search-form{
+  float: right;
+  position: relative;
   margin-top: 5px;
   margin-left: 0px;
   padding-left: 0px;
-
-}
-
-#container{
-background-color: #fff;
-}
-
-#container2{
-padding-left: 10%;
-padding-bottom:10%; 
-padding-right:10%;
-background-color: #fff;
-}
-#li1{
-float: right;
-}
-
-#dd{
-margin-top: 10%;
-margin-bottom: -5%;
-}
-
-#ddmenu{
-padding: 15px; margin-left: 0%;
 }
 
 

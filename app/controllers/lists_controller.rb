@@ -19,7 +19,7 @@ class ListsController < ApplicationController
 
   	if @list.save
 	    #TODO: Make this flash directly on user_lists_path
-	    #flash[:success] = @list[:name] + " has been successfully created !"
+	    flash[:success] = "#{@list.name} has been successfully created !"
       redirect_to user_lists_path(current_user.username)
    	else
 	    render :new
