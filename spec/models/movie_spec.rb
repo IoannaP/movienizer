@@ -29,5 +29,5 @@ describe Movie do
 	describe "when title is blank" do
 		before { @movie.title = "" }
 		it { should_not be_valid }
-	end
+	end	
 end
