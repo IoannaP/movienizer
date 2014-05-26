@@ -14,20 +14,19 @@
  *= require_tree .
  */
 
+
 #left-nav {
   margin-top: 8px; 
   padding-right: 0px;
+  margin-left: 0px;
 }
 
-#middle-nav {
+#search-form{
+  float: right;
+  position: relative;
+  margin-top: 5px;
   margin-left: 0px;
   padding-left: 0px;
-  padding-right: 0px;
 }
 
-#right-nav {
-  margin-top: 10px;
-  margin-left: 0px;
-  padding-left: 0px;
 
-}

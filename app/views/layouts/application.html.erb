@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MDS</title>
+  <title>MovieUP</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<<<<<<< HEAD
 
 <script>
 function movieFormatResult(movie) {
@@ -71,48 +72,47 @@ $("document").ready(function() {
 
 </script>
 
+=======
+>>>>>>> c4cb08aea2165d152b2e570d88be72f473ab679a
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6" id="left-nav">
-       <%= render_navigation :expand_all => true %>
-           </div>
-      <div class="col-sm-5" id="right-nav">
-        <ul class="nav nav-pills">
-          <li style="float: right;">
-		<ul class="nav nav-pills">
+    <div class="row" >
+      <div class="col-md-7" id="left-nav">
+	       <%= render_navigation :expand_all => true %>
+      </div>
+      <div class="col-md-5">
+        <div id="search-form">
             <%= form_tag search_path, :method => :get, :class => "navbar-form navbar-left" do %>
               <% if params[:q] %>
                 <%= text_field_tag :q , params[:q].gsub('+', ' ') , placeholder: "Movies...", class: "form-control form-group" %>
               <% else %>
                 <%= text_field_tag :q , params[:q], placeholder: "Movies...", class: "form-control form-group" %>
               <% end %>
+              
               <%= submit_tag 'Search', :name => nil, :class => "btn btn-default" %>
             <% end %>
-          
-            <% unless user_signed_in? %>
-            
-             <!-- li class="dropdown open">
-                <a class="btn btn" data-toggle="dropdown" href="#" style="margin-top: 10%;margin-bottom: -5%;">Sign in <b class="caret"></b></a>   
-                <div class="dropdown-menu" style="padding: 15px; margin-left: 0%; ">
-                  <form>
-                    <input id="login-username" type="text" placeholder="Username/E-mail">
-                    <input id="login-password" type="password" placeholder="Password">
-                    <button class="btn btn-sm btn-primary btn-block" type="submit">Sign in</button>
-                  </form>
-                </div>
-              </li> -->
-          
-            <%end%>
-          </li>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="container">
-    <div class="row">
-      <div class="col-sm-9"><%= yield %></div>
+    <div class="row" >
+      <!-- render box-office if it is in homepage, searches or movies path -->
+      
+      <% if ['welcome', 'searches', 'movies'].include?(params[:controller]) %>
+      <div class="col-md-7"><%= yield %></div>
+        <div class="col-md-5">
+          <%= render 'boxoffice/box_office' %>
+        </div>
+      <% else %>
+      <div class="col-md-12">
+      <%=yield%>
+      </div>
+      <%end%>
+
     </div>
   </div>
 
+  <%= render 'layouts/footer.html.erb' %>
 </body>
 </html>

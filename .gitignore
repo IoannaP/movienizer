@@ -20,3 +20,8 @@
 
 # Ignore the test folder, rspec will be used instead.
 /test
+
+# Ignore devise initializer
+config/initializers/devise.rb
+
+db/schema.rb

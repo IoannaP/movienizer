@@ -1,5 +1,25 @@
-<%= link_to 'My lists', user_lists_path(current_user.username), :class => 'btn btn-primary' %>
+  <%= bootstrap_flash%>
 
+  <h2> Add details about your list </h2>
+
+  <div class="col-md-3">
+    <%= simple_form_for [current_user, @list], :html => { :class => 'form-horizontal' } do |f| %>
+      <div class="form-inputs">
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :private, label: "Visibility",
+          as: :radio_buttons, 
+          collection: [["private", true], ["public", false]],
+          checked: true %>
+      </div>
+      <div class="form-actions form-button">
+        <%= f.button :submit, :class => 'btn btn-primary' %> 
+        <%= link_to "Cancel", user_lists_path(current_user.username), :class => 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+
+<<<<<<< HEAD
 <%= simple_form_for [current_user, @list], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
@@ -11,3 +31,5 @@
   <%= f.button :submit, "Next: add movies to your list", :class => 'btn btn-primary' %> 
   <%= link_to "Cancel", user_lists_path(current_user.username), :class => 'btn btn-default' %>
 <% end %>
+=======
+>>>>>>> c4cb08aea2165d152b2e570d88be72f473ab679a

@@ -1,0 +1,14 @@
+<div class="panel panel-default" style="margin-right: -12%; margin-left:60%; margin-top: 10%;"> 
+<!-- Default panel contents --> 
+<div class="panel-heading"><center>Top 10 Box Office</center></div> 
+<div class="panel-body"> 
+<!-- Table --> 
+<table class="table"> 
+<p><center><b>Highest rated movies of the month</b></center></p>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table> 
+</div>

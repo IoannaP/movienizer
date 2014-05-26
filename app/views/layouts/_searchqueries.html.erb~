@@ -1,0 +1,21 @@
+ <table class="table">
+      <% if @movies_part %>
+     <% @movies_part.each do |movie| %>
+     <tr>
+     <td><%= image_tag(movie['posters']['thumbnail'], size: "61x91") %></td>
+     <td><strong>
+     <% if movie.key?('alternate_ids') && movie['alternate_ids'].key?('imdb') %>
+     <!-- uncomment this to link the movies to imdb site -->
+              <!--<%= link_to movie['title'], "http://www.imdb.com/title/tt" + movie['alternate_ids']['imdb'], :target => '_blank' %> -->
+              <!-- this will link every movie with the specified movie page that correspond to it -->
+              <%= link_to movie['title'], movie_path(:movie_id => movie['id'], :id => 'show') %>
+     <% else %>
+     <%= movie['title'] style="margin-left:50%;" %>
+     <% end %>
+     </strong></td>
+     <td><%= movie['year'] %></td>
+     <td><%= movie['synopsis'] %></td>
+     </tr>
+        <% end %>
+     <% end %>
+    </table>

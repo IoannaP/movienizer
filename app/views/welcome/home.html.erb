@@ -1,1 +1,57 @@
+<%= stylesheet_link_tag "welcomehome", media: "all", "data-turbolinks-track" => true %>
 <%= bootstrap_flash %>
+<br>
+
+<% if user_signed_in? %>
+<h3>Welcome, <%= current_user.username %>!</h3><br><br>
+ <div class="panel panel-info">
+    <div class="panel panel-heading">
+     <h4>Your newest lists</h4>
+    </div>
+  <div class="panel panel-body">
+  <% if current_user.lists.any?%>
+    
+      <ul>
+      <% current_user.lists[0..5].each do |list| %>
+        <li><span class="glyphicon glyphicon-film"></span>
+          <%= link_to list.name, user_list_path(current_user.username, list.id) %></li>
+      <% end %>
+      </ul>  
+  <%else%>
+      <h4> You don't have any lists yet! - <%=link_to 'create one', new_user_list_path(current_user.username)%> now</h4>
+  <%end%>
+  </div>
+</div>
+  
+
+  <div class="panel panel-info">
+    <div class="panel panel-heading">
+      <h4>Your latest reviews</h4>
+    </div>
+    
+    <div class="panel panel-body">
+    
+    <%if current_user.reviews.any?%>
+      <ul>
+        <% current_user.reviews[0..5].each do |review| %>
+        <li>
+          <% if Movie.find(review.movie_id).thumbnail_poster_link %>
+            <%= image_tag(Movie.find(review.movie_id).thumbnail_poster_link, size: '21x31') %>
+          <% end %>
+          <%= link_to Movie.find(review.movie_id).title, 
+          movie_path(:movie_id => Movie.find(review.movie_id).rotten_tomatoes_id, id: 'show') %>
+        </li>
+        <% end %>
+      </ul>
+  <%else%>
+    <h4> You haven't reviewed any movies yet! Search for your favourite movie and tell us what you think! </h4>
+  <%end%>
+   </div>
+  </div>
+<%else%>
+  <h2> Welcome to MovieUp! </h2>
+  <h3> <%=link_to 'Sign Up', new_user_registration_path%> to begin your moviest journey! </h3>
+  <h4> Or, if you're tired of filling in your details, you can always 
+    <%=link_to 'Sign Up with Facebook', user_omniauth_authorize_path(:facebook)%>.</h4>
+<%end%>
+

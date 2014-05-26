@@ -1,0 +1,28 @@
+<!-- <%= link_to 'My reviews', user_reviews_path(current_user.username), :class => 'btn btn-primary' %> -->
+<table>
+<tr>
+<td style="padding: 5%;">
+<p>
+  <% if Movie.find(Review.find(params[:id]).movie_id).detailed_poster_link %>
+    <%= image_tag(Movie.find(Review.find(params[:id]).movie_id).detailed_poster_link) %>
+  <% end %>
+</p>
+</td>
+<td style="padding-left: 5%;">
+<h1><%= Movie.find(Review.find(params[:id]).movie_id).title %></h1> 
+</td>
+</tr>
+</table>
+
+<%= simple_form_for [current_user, review], :url => { :action => 'update'}, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.hidden_field :movie_id %>
+  <%= f.input :rating %>
+  <%= f.input :comment %>
+  <%= f.input :private, label: "Visibility",
+  as: :radio_buttons, 
+  collection: [["private", review.private], ["public", !review.private]],
+  checked: true %>
+  
+  <%= f.button :submit, :class => 'btn btn-primary' %> 
+  <%= link_to "Cancel", user_reviews_path(current_user.username), :class => 'btn btn-default' %>
+<% end %>

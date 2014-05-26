@@ -1,0 +1,16 @@
+<div class="box-office">
+  <h3 class = "center-text">Box Office</h3>
+
+  <table class="table table-striped">
+    
+    <% box_office_movies.each_with_index do |movie, index| %>
+      <tr>
+        <td><%= index + 1%></td>
+        <td><%= image_tag(movie.thumbnail_poster_link, size: "21x31") %></td>
+        <td class="title-tab">
+          <strong><%= link_to movie.title, movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></strong>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

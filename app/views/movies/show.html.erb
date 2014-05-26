@@ -1,36 +1,40 @@
 <!-- Aici sunt toate informatiile pe care le poti obtine de la api-->
-<%= image_tag(@movie['posters']['detailed']) %>
-<h1><%= @movie['title'] %></h1>
-<h2><%= @movie['year'] %></h2>
 
-<h3>Genres</h3>
-
-<br>
-<ul>
-  <% @movie['genres'].each do |genre| %>
-    <li><%= genre %></li>
-  <% end %>
-  <li></li>
-</ul>
+<table class="header-informations">
+  <tr>
+    <td class="poster"> <%= image_tag(@movie['posters']['detailed']) %> </td>
+    <td class="important-informations">
+	    <h1><%= @movie['title'] %></h1>
+	    <h2><%= @movie['year'] %></h2>	
+    </td>
+  </tr>
+</table>	
 
 <table>
   <tr>
-    <td>MPAA Rating</td>
-    <td><%= @movie['mpaa_rating'] %></td>
+	<td><strong>Genres</td>
+	<td><br><% @movie['genres'].each do |genre| %>
+    <li><%= genre %></li>
+  <% end %>
+</td>
   </tr>
   <tr>
-	 <td>Runtime</td>
-	 <td><%= @movie['runtime'] %></td>
+    <td><strong>User Rating</strong><br></td>
+    <td><%= @movie['mpaa_rating'] %><br></td>
   </tr>
   <tr>
-	 <td>critics_consensus (don't know wtf is this)</td>
-	 <td><%= @movie['critics_consensus'] %></td>
+	 <td><strong>Runtime</strong><br></td>
+	 <td><%= @movie['runtime'] %><br></td>
   </tr>
   <tr>
-	 <td>release_dates</td>
-	 <td><ul><li>theater = <%= @movie['release_dates']['theater'] %></li>
+	 <td><strong>Critics' opinion</strong><br></td>
+	 <td><%= @movie['critics_consensus'] %><br></td>
+  </tr>
+  <tr>
+	 <td><strong>Release dates</strong><br></td>
+	 <td><ul><br><li>Theater = <%= @movie['release_dates']['theater'] %></li>
 	 <% if @movie['release_dates']['dvd'] %> <!-- adica daca exista campul 'dvd' (nu este null) --> 
-	   <li>dvd = <%= @movie['release_dates']['dvd'] %></li> 
+	   <li>DVD = <%= @movie['release_dates']['dvd'] %><br></li> 
 	 <% end %>
 	 </ul></td>
   </tr>

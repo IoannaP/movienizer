@@ -1,19 +1,19 @@
-<h2>Forgot your password?</h2>
-<div class="row">
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-  
+
+  <%= bootstrap_flash%>
+  <h2>Forgot your password?</h2>
+  <div class="col-md-3"> 
 
     <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= f.error_notification %>
 
       <div class="form-inputs">
-        <%= f.input :login, required: true, autofocus: true %>
+        <%= f.input :login, required: false, autofocus: true, label: "Email/Username" %>
       </div>
 
       <div class="form-actions">
         <%= f.button :submit, "Send reset instructions" %>
       </div>
     <% end %>
+    <%= render "users/shared/links" %>
+
   </div>
-</div>
-<%= render "users/shared/links" %>
+

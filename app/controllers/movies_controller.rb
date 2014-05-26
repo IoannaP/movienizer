@@ -22,9 +22,9 @@ class MoviesController < ApplicationController
 	  new_movie = Movie.new(:rotten_tomatoes_id => params[:movie_id], :title => movie_title, :thumbnail_poster_link => thumbnail_poster, :detailed_poster_link => detailed_poster)
 	  
 	  new_movie.save
-	else
-	  @existent_movie = Movie.where(:rotten_tomatoes_id => params[:movie_id]).first
 	end
+	
+	@existent_movie = Movie.where(:rotten_tomatoes_id => params[:movie_id]).first
 
 	@reviews = Review.where(:movie_id => @existent_movie.id)
 

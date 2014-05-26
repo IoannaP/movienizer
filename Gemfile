@@ -7,7 +7,7 @@ gem 'rails', '4.0.4'
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+#gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -37,7 +37,11 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'rspec', '~> 3.0.0.beta2'
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec",  '~> 4.2.7', require: false
 end
 
 gem 'select2-rails'
@@ -52,7 +56,12 @@ gem 'select2-rails'
 # gem 'debugger', group: [:development, :test]
 
 # Create users
-gem 'devise'
+gem 'devise', '>= 2.0.0'
+
+# Authentication with facebook
+gem 'omniauth-facebook'
+
+gem 'devise_invitable', '~> 1.3.4'
 
 # Simple forms
 gem 'simple_form'
@@ -64,9 +73,3 @@ gem 'bootstrap-kaminari-views'
 
 # Parse XML files
 gem 'nokogiri'
-
-# Dynamically add/remove form links
-gem "nested_form"
-
-# For easier JSON manipulation
-gem "gon"

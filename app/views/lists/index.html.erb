@@ -1,6 +1,4 @@
-<% if @user == current_user %>
-  <%= link_to 'New list', new_user_list_path(current_user.username), :class => 'btn btn-primary' %>
-<% end %>
+<%= bootstrap_flash %>
 
 <h1>
   <% if @user == current_user %>
@@ -21,7 +19,7 @@
   <% if @user != current_user && @public_lists_count == 0 %>
       <p>This user has no public lists.</p>
   <% else %>
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Name</th>
@@ -36,7 +34,7 @@
         <% unless @user != current_user && list.private == true %>
           <tr>
             <td><%= list.name %></td>
-            <td><%= list.description %></td>
+            <td><%= "#{list.description[0..35]}..." %></td>
             <% if @user == current_user %>
               <td>
                 <% if list.private == true %>
@@ -46,10 +44,10 @@
                 <% end %>
               </td>
             <% end %>
-            <td><%= link_to 'Show', user_list_path(@user.username, list), :class => 'btn btn-primary' %></td>
+            <td><%= link_to 'Show', user_list_path(@user.username, list), :class => 'btn btn-primary' %>
             <% if @user == current_user %>
-              <td><%= link_to 'Edit', edit_user_list_path(current_user.username, list), :method => :get, :class => 'btn btn-primary' %></td>
-              <td><%= link_to 'Delete', 
+              <%= link_to 'Edit', edit_user_list_path(current_user.username, list), :method => :get, :class => 'btn btn-primary' %>
+              <%= link_to 'Delete', 
               user_list_path(current_user.username, list), :method => :delete,
                 :data => { :confirm => "Press Ok to Delete the List \"#{list.name}\"."},
                 :class => 'btn btn-danger' %></td>
@@ -58,8 +56,9 @@
         <% end %>
       <% end %>
     </table>
+    <%= paginate @lists, :theme => 'twitter-bootstrap-3'%>
   <% end %>
-  <%= paginate @lists, :theme => 'twitter-bootstrap'%>
+ 
 <% end %>
 
 
