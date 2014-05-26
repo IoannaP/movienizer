@@ -2,15 +2,15 @@
 
 <h1>
   <% if @user == current_user %>
-    My Lists
+    <h2>My Lists </h2>
   <% else %>
-    <%= @user.username %>'s Lists
+    <h2> <%= @user.username %>'s Lists </h2>
   <% end %>
 </h1>
 
 <% if @lists.length == 0 %>
   <% if @user == current_user %>
-    <p>You have no lists. Create one now!</p>
+    <p>You have no lists. <%= link_to 'Create one', new_user_list_path(current_user.username)%> now!</p>
   <% else %>
     <p>This user has no public lists.</p>
   <% end %>
@@ -19,6 +19,7 @@
   <% if @user != current_user && @public_lists_count == 0 %>
       <p>This user has no public lists.</p>
   <% else %>
+  <%= link_to 'New list', new_user_list_path(current_user.username), class: "btn btn-primary"%>
     <table class="table table-striped">
       <thead>
         <tr>
