@@ -10,6 +10,7 @@
 <td style="padding-left: 5%;padding-top:5%;">
 <h1><%= Movie.find(Review.find(params[:id]).movie_id).title %></h1> 
 <h2><%= Movie.find(Review.find(params[:id]).movie_id).year %></h2>
+<h4>Average rating: <%= @rating %></h4>
 </td>
 </tr>
 </table>

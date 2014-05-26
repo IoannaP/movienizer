@@ -22,7 +22,7 @@
 		<% @movies.each do |movie| %>
 			<tr>
 				<td><%= link_to image_tag(movie.thumbnail_poster_link, size: '61x91'), movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></td>
-				<td><%= link_to "#{movie.title} ( #{movie.year} )", movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></td>
+				<td><%= link_to "#{movie.title} (#{movie.year})", movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></td>
 				<% if @user == current_user %>
 					<td><%= link_to "Remove", 
 					    remove_user_list_movie_path(movie_id: movie.id), :method => :delete,

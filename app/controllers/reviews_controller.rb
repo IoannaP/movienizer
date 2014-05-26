@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
   def new
   	@review = current_user.reviews.new
   	@review.movie_id = params[:id]
+    @rating = movie_rating(params[:id])
   end
 
   def create
@@ -31,6 +32,8 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @movie = Movie.find(params[:id])
+    @rating = movie_rating(params[:id])
   end
 
   def update
@@ -55,6 +58,15 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def movie_rating(movie_id)
+    reviews = Review.where(:movie_id => movie_id)
+    rating = 0
+    reviews.each do |review|
+      rating = rating + review.rating
+    end
+    rating = rating / reviews.length
+  end
 
   def current_user_reviews
     current_user.reviews

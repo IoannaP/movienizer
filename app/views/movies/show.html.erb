@@ -6,6 +6,7 @@
     <td class="important-informations">
 	    <h1><%= @movie['title'] %></h1>
 	    <h2><%= @movie['year'] %></h2>	
+      <h4>Average rating: <%= @rating %></h4>
     </td>
   </tr>
 </table>	
@@ -56,7 +57,7 @@
   <% end %>
   <% if @public_reviews_count != 0 %>
     <h2> User Reviews </h2>
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Username</th>

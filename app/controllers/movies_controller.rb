@@ -27,6 +27,11 @@ class MoviesController < ApplicationController
 	@existent_movie = Movie.where(:rotten_tomatoes_id => params[:movie_id]).first
 
 	@reviews = Review.where(:movie_id => @existent_movie.id)
+	@rating = 0
+	@reviews.each do |review|
+		@rating = @rating + review.rating
+	end
+	@rating = @rating / @reviews.length
 
 	if user_signed_in?
 	  @current_user_review = @reviews.find_by_user_id(current_user.id)
