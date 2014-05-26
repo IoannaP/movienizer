@@ -3,6 +3,7 @@
     <td class="poster"> <%= image_tag(detailed_poster) %> </td>
     <td class="important-informations">
       <h1><%= movie_title %></h1>
+      <h2><%= Movie.find_by_title(movie_title).year %></h1>
     </td>
   </tr>
 </table>

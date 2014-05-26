@@ -40,7 +40,7 @@
                 <%= image_tag(Movie.find(review.movie_id).thumbnail_poster_link, size: '61x91') %>
               <% end %>
             </td>
-            <td><%= link_to Movie.find(review.movie_id).title, movie_path(:movie_id => Movie.find(review.movie_id).rotten_tomatoes_id, :id => 'show') %></td>
+            <td><%= link_to "#{Movie.find(review.movie_id).title} (#{Movie.find(review.movie_id).year})", movie_path(:movie_id => Movie.find(review.movie_id).rotten_tomatoes_id, :id => 'show') %></td>
             <td><%= review.rating.to_s %></td>
             <td><%= "#{review.comment[0..25]}..." %></td>
             <% if @user == current_user %>
