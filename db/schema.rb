@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140523225234) do
 
-  create_table "bmovies", force: true do |t|
-    t.string   "title"
-    t.string   "rotten_tomatoes_id"
-    t.string   "thumbnail_poster_link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "box_office_movies", force: true do |t|
     t.string   "title"
     t.string   "rotten_tomatoes_id"
@@ -48,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140523225234) do
   create_table "movies", force: true do |t|
     t.string   "rotten_tomatoes_id"
     t.string   "title"
+    t.string   "year"
     t.string   "thumbnail_poster_link"
     t.string   "detailed_poster_link"
     t.datetime "created_at"

@@ -10,14 +10,9 @@ class SearchesController < ApplicationController
 			@search_res = movies_request(params[:q])
 			@movies_part = movies_query(@search_res)
 		end
-
-		# respond_to do |format|
-		# 	format.html { redirect_to searches_url }
-		# 	format.js
-		# end
 	end
 
-	private
+private
 
 	#return the jSon string returned from the API for all the movies
 	#that correspond with the name given by the parameter 'param'

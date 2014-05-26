@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Movie do
 	before do 
-		@movie = Movie.new(rotten_tomatoes_id: "1234", title: "Sample Movie")
+		@movie = Movie.new(rotten_tomatoes_id: "1234", title: "Sample Movie", year: "2035")
 	end
 
 	subject { @movie }
@@ -28,6 +28,11 @@ describe Movie do
 
 	describe "when title is blank" do
 		before { @movie.title = "" }
+		it { should_not be_valid }
+	end
+
+	describe "when year is nil" do
+		before { @movie.year = nil }
 		it { should_not be_valid }
 	end
 end

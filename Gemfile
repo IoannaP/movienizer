@@ -65,4 +65,8 @@ gem 'bootstrap-kaminari-views'
 # Parse XML files
 gem 'nokogiri'
 
+# Dynamically add/remove form links
+gem "nested_form"
 
+# For easier JSON manipulation
+gem "gon"

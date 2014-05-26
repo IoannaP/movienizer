@@ -8,6 +8,6 @@
   collection: [["private", true], ["public", false]],
   checked: true %>
   
-  <%= f.button :submit, :class => 'btn btn-primary' %> 
+  <%= f.button :submit, "Next: add movies to your list", :class => 'btn btn-primary' %> 
   <%= link_to "Cancel", user_lists_path(current_user.username), :class => 'btn btn-default' %>
 <% end %>
