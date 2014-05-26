@@ -18,20 +18,20 @@
 		<%= link_to "Add movie", user_list_list_movie_pairs_path(current_user.username, list), class: "btn btn-primary" %>
 	<% end %>
 
-	<ol>
+	<table class="table table-striped">
 		<% @movies.each do |movie| %>
-			<li>
-				<%= image_tag(movie.thumbnail_poster_link) %>
-				<%= "#{movie.title} (#{movie.year})" %>
+			<tr>
+				<td><%= image_tag(movie.thumbnail_poster_link) %></td>
+				<td><%= link_to "#{movie.title} (#{movie.year})", movie_path(:movie_id => movie.rotten_tomatoes_id, :id => 'show') %></td>
 				<% if @user == current_user %>
-					<%= link_to "Remove", 
+					<td><%= link_to "Remove", 
 					    remove_user_list_movie_path(movie_id: movie.id), :method => :delete,
 					    :data => { :confirm => "Remove?"},
-					    :class => "btn btn-danger" %>
+					    :class => "btn btn-danger" %></td>
 				<% end %>
-			</li>
+			</tr>
 		<% end %>
-	</ol>
+	</table>
 
 	<%= paginate @movies, theme: "twitter-bootstrap" %>
 <% end %>
