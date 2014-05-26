@@ -1,4 +1,4 @@
-Movienizer 
+MovieUP 
 ==========
 
 Your online movie organizer
@@ -43,6 +43,7 @@ Install and configure dependecies
 
         rails generate bootstrap:install static
         rails generate devise:install
+        rails generate simple_form:install --bootstrap
         
   * Press **Y** if you are raised a conflict
 
@@ -53,6 +54,6 @@ Usage
 
         rails server
         
-* Start your favourite browser and access the local server
+* Launch your favourite browser and access the local server
 
         localhost:3000
