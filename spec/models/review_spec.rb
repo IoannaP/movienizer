@@ -22,7 +22,7 @@ describe Review do
   	it { should be_valid }
   end
 
-  describe "when comment id blank" do
+  describe "when comment is blank" do
     before { @review.comment = "" }
     it { should be_valid }
   end
@@ -50,5 +50,10 @@ describe Review do
   describe "when user id is nil" do
   	before { @review.user_id = nil }
   	it { should_not be_valid }
+  end
+
+  describe "when the privacy attribute is nil" do
+    before { @review.private = nil }
+    it { should_not be_valid }
   end
 end

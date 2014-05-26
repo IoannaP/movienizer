@@ -3,6 +3,7 @@ class CreateMovies < ActiveRecord::Migration
     create_table :movies do |t|
       t.string :rotten_tomatoes_id
       t.string :title
+      t.string :year
       t.string :thumbnail_poster_link
       t.string :detailed_poster_link
 

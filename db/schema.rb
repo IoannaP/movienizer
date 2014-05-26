@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140525111426) do
   create_table "movies", force: true do |t|
     t.string   "rotten_tomatoes_id"
     t.string   "title"
+    t.string   "year"
     t.string   "thumbnail_poster_link"
     t.string   "detailed_poster_link"
     t.datetime "created_at"

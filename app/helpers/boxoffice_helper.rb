@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 module BoxofficeHelper
   
   # return Box Office Movies from database
