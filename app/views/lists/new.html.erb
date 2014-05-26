@@ -19,7 +19,6 @@
     <% end %>
   </div>
 
-<<<<<<< HEAD
 <%= simple_form_for [current_user, @list], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
@@ -31,5 +30,3 @@
   <%= f.button :submit, "Next: add movies to your list", :class => 'btn btn-primary' %> 
   <%= link_to "Cancel", user_lists_path(current_user.username), :class => 'btn btn-default' %>
 <% end %>
-=======
->>>>>>> c4cb08aea2165d152b2e570d88be72f473ab679a

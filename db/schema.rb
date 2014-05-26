@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140523225234) do
-=======
 ActiveRecord::Schema.define(version: 20140525111426) do
->>>>>>> c4cb08aea2165d152b2e570d88be72f473ab679a
 
   create_table "box_office_movies", force: true do |t|
     t.string   "title"

@@ -21,13 +21,7 @@ class ListsController < ApplicationController
   	@list = current_user.lists.new(list_params)
 
   	if @list.save
-<<<<<<< HEAD
       redirect_to user_list_list_movie_pairs_path(current_user.username, list)
-=======
-	    #TODO: Make this flash directly on user_lists_path
-	    flash[:success] = "#{@list.name} has been successfully created !"
-      redirect_to user_lists_path(current_user.username)
->>>>>>> c4cb08aea2165d152b2e570d88be72f473ab679a
    	else
 	    render :new
   	end
