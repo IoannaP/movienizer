@@ -13,20 +13,9 @@
           checked: true %>
       </div>
       <div class="form-actions form-button">
-        <%= f.button :submit, :class => 'btn btn-primary' %> 
+        <%= f.button :submit, "Add movies to your list", :class => 'btn btn-primary' %> 
         <%= link_to "Cancel", user_lists_path(current_user.username), :class => 'btn btn-default' %>
       </div>
     <% end %>
   </div>
 
-<%= simple_form_for [current_user, @list], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :private, label: "Visibility",
-  as: :radio_buttons, 
-  collection: [["private", true], ["public", false]],
-  checked: true %>
-  
-  <%= f.button :submit, "Next: add movies to your list", :class => 'btn btn-primary' %> 
-  <%= link_to "Cancel", user_lists_path(current_user.username), :class => 'btn btn-default' %>
-<% end %>

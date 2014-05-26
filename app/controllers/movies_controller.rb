@@ -18,12 +18,12 @@ class MoviesController < ApplicationController
 	# add movie to database if it's not already
 	if Movie.exists?(:rotten_tomatoes_id => params[:movie_id]) == false
 	  movie_title = @movie['title']
-	  
-	  new_movie = Movie.new(:rotten_tomatoes_id => params[:movie_id], :title => movie_title, :thumbnail_poster_link => thumbnail_poster, :detailed_poster_link => detailed_poster)
-	  
+
+	  new_movie = Movie.new(:rotten_tomatoes_id => params[:movie_id], :title => movie_title, :year => movie_year, :thumbnail_poster_link => thumbnail_poster, :detailed_poster_link => detailed_poster)
+
 	  new_movie.save
 	end
-	
+
 	@existent_movie = Movie.where(:rotten_tomatoes_id => params[:movie_id]).first
 
 	@reviews = Review.where(:movie_id => @existent_movie.id)
@@ -92,12 +92,16 @@ class MoviesController < ApplicationController
   	@movie['id']
   end
 
+  def movie_year
+  	@movie['year']
+  end
+
   def thumbnail_poster
-	if @movie['posters'] and @movie['posters']['thumbnail']
-	  thumbnail = @movie['posters']['thumbnail']
-	else
-		nil
-	end
+		if @movie['posters'] and @movie['posters']['thumbnail']
+		  thumbnail = @movie['posters']['thumbnail']
+		else
+			nil
+		end
   end
 
   def detailed_poster
