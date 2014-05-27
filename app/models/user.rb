@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :confirmable , :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  validates :username, :uniqueness => {:case_sensitive => false}
+  validates :username, presence: true, :uniqueness => {:case_sensitive => false}
 
   has_many :lists
   has_many :reviews

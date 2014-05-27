@@ -1,4 +1,7 @@
-<%= simple_form_for [current_user, list], :url => { :action => 'update'},  :html => { :class => 'form-horizontal' } do |f| %>
+
+<div class="col-md-3">
+  <h2> Edit list </h2>
+<%= simple_form_for [current_user, list], :url => { :action => 'update'} do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :private, label: "Visibility",
@@ -9,3 +12,4 @@
   <%= f.button :submit, :class => 'btn btn-primary' %>  
   <%= link_to "Cancel", user_lists_path(current_user.username), :class => 'btn btn-default' %>
 <% end %>
+</div>
