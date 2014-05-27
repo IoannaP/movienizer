@@ -61,7 +61,7 @@ gem 'devise', '>= 2.0.0'
 # Authentication with facebook
 gem 'omniauth-facebook'
 
-gem 'devise_invitable', '~> 1.3.4'
+gem 'devise_invitable'
 
 # Simple forms
 gem 'simple_form'

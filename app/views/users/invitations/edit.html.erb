@@ -2,12 +2,17 @@
 <h2><%= t 'devise.invitations.edit.header' %></h2>
 
 <%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-  <%= bootstrap_flash%>
+  <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>
 
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
+    <%= f.input :username, required: true, autofocus: true %>
+    <%= f.input :first_name, required: true %>
+    <%= f.input :last_name, required: true %>
+    <%= f.input :email, required: true %>
+    <%= f.input :password, required: true %>
+    <%= f.input :password_confirmation, required: true %>
 
-  <%= f.submit t("devise.invitations.edit.submit_button") %>
+  <%= f.submit "Submit" %>
 <% end %>
+
 </div>

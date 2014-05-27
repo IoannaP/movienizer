@@ -22,5 +22,11 @@ class ApplicationController < ActionController::Base
       :password, 
       :password_confirmation,
       :current_password) }
+     devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :email, :login]
+  devise_parameter_sanitizer.for(:accept_invitation) do |u|
+    u.permit(:first_name, :last_name, :email,:login, :password, :password_confirmation,
+             :invitation_token)
   end
+  end
+ 
 end
